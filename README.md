@@ -13,7 +13,7 @@
       > Halaman utama produk-produk.
   - cart-page.php
       > Halaman untuk tampilan isi keranjang
-  - profile.php
+  - profile-dashboard.php
       > Halaman profile
   - manage-product.php
       > Halaman admin e-commerce untuk menambahakan produk baru ke dalam website
