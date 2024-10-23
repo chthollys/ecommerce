@@ -4,12 +4,12 @@
 
 ## Page yang dibuat :
 
-  - register.php
+  - register-page.php
     
       > Buat halaman interface daftar akun baru, data akun baru disimpan ke database.
   - registerProcess.php
       > handle register process.
-  - login.php
+  - login-page.php
       > Buat halaman interface html css untuk login akun, input email dan password.
   - loginProcess.php
       > handle login process.
@@ -19,7 +19,7 @@
       > Halaman untuk tampilan isi keranjang.
   - profile-dashboard.php
       > Halaman profile.
-  - manage-product.php
+  - manage-product-page.php
       > Halaman admin e-commerce untuk menambahakan produk baru ke dalam website.
 
 ## Color Theme :
