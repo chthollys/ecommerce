@@ -6,17 +6,21 @@
 
   - register.php
     
-      > Buat halaman daftar akun baru, data akun baru disimpan ke database.
+      > Buat halaman interface daftar akun baru, data akun baru disimpan ke database.
+  - registerProcess.php
+      > handle register process.
   - login.php
-      > Buat halaman login akun, input email dan password.
+      > Buat halaman interface html css untuk login akun, input email dan password.
+  - loginProcess.php
+      > handle login process.
   - home-page.php
       > Halaman utama produk-produk.
   - cart-page.php
-      > Halaman untuk tampilan isi keranjang
+      > Halaman untuk tampilan isi keranjang.
   - profile-dashboard.php
-      > Halaman profile
+      > Halaman profile.
   - manage-product.php
-      > Halaman admin e-commerce untuk menambahakan produk baru ke dalam website
+      > Halaman admin e-commerce untuk menambahakan produk baru ke dalam website.
 
 ## Color Theme :
   ![theme color](theme_color.png)
