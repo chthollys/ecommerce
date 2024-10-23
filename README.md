@@ -21,7 +21,7 @@
       > Halaman profile.
   - manageProduct-page.php
       > Halaman admin e-commerce untuk menambahakan produk baru ke dalam website.
-  -manageProductProcess.php
+  - manageProductProcess.php
       > Handle penamabahan product ke dashboard penjualan.
 
 ## Color Theme :
