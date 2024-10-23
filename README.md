@@ -19,9 +19,13 @@
       > Halaman admin e-commerce untuk menambahakan produk baru ke dalam website
 
 ## Color Theme :
+
   > #3B1E54 | rgb(59, 30, 84)
+
   > #9B7EBD | rgb(155, 126, 189)
+
   > #D4BEE4 | rgb(212, 190, 228)
+
   > #EEEEEE | rgb(238, 238, 238)
 
   
