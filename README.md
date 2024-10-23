@@ -19,8 +19,10 @@
       > Halaman untuk tampilan isi keranjang.
   - profile-dashboard.php
       > Halaman profile.
-  - manage-product-page.php
+  - manageProduct-page.php
       > Halaman admin e-commerce untuk menambahakan produk baru ke dalam website.
+  -manageProductProcess.php
+      > Handle penamabahan product ke dashboard penjualan.
 
 ## Color Theme :
   ![theme color](theme_color.png)
