@@ -22,7 +22,7 @@
   - manageProduct-page.php
       > Halaman admin e-commerce untuk menambahakan produk baru ke dalam website.
   - manageProductProcess.php
-      > Handle penamabahan product ke dashboard penjualan.
+      > Handle penambahan product ke dashboard penjualan.
 
 ## Color Theme :
   ![theme color](theme_color.png)
