@@ -1,4 +1,4 @@
-# Deadline : 29 Oktober (H-6)
+# Deadline : 29 Oktober (H-3)
 
 ## Metode Pengerjaan : Collab in GitHub
 
