@@ -36,4 +36,4 @@
 
   
 ## Database Software  : mysql 
-## Nama database      : user_db
+## Nama database      : e-commerce_db
