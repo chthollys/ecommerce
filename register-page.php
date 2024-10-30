@@ -6,7 +6,7 @@
     <title>Register</title>
 
     <!-- Custom CSS File -->
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 
