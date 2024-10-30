@@ -1,20 +1,22 @@
+<?php
+session_start(); // Start the session here
+include 'registerProcess.php'; // Include the registration logic
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-
-    <!-- Custom CSS File -->
     <link rel="stylesheet" href="./styles-images/login-register.css">
 </head>
 <body>
 
 <?php
-if (isset($message)) {
-    foreach ($message as $msg) {
-        echo '<div class="message" onclick="this.remove();">' . htmlspecialchars($msg) . '</div>';
-    }
+if (isset($_SESSION['message'])) {
+    echo '<div class="message" onclick="this.remove();">' . htmlspecialchars($_SESSION['message']) . '</div>';
+    unset($_SESSION['message']); // Clear message after displaying
 }
 ?>
 
@@ -26,7 +28,7 @@ if (isset($message)) {
         <input type="password" name="password" required placeholder="Enter Password" class="box">
         <input type="password" name="cpassword" required placeholder="Confirm Password" class="box">
         <input type="submit" name="submit" class="btn" value="Register Now">
-        <p>Already have an account? <a href="./login-page.php">Login now</a></p>
+        <p>Already have an account? <a href="./login-page.php">Login Now</a></p>
     </form>
 </div>
 
