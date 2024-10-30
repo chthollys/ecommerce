@@ -6,7 +6,7 @@
    <title>login</title>
 
    <!-- custom css file link  -->
-   <link rel="stylesheet" href="./styles/login-register.css">
+   <link rel="stylesheet" href="./styles-images/login-register.css">
 
 </head>
 <body>
