@@ -6,7 +6,7 @@
    <title>login</title>
 
    <!-- custom css file link  -->
-   <link rel="stylesheet" href="./styles.css">
+   <link rel="stylesheet" href="./styles/login-register.css">
 
 </head>
 <body>
@@ -26,7 +26,7 @@ if(isset($message)){
       <input type="email" name="email" required placeholder="enter email" class="box">
       <input type="password" name="password" required placeholder="enter password" class="box">
       <input type="submit" name="submit" class="btn" value="login now">
-      <p>Don't have an account? <a href="register.php">register now</a></p>
+      <p>Don't have an account? <a href="register-page.php">register now</a></p>
    </form>
 
 </div>

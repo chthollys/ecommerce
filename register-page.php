@@ -6,7 +6,7 @@
     <title>Register</title>
 
     <!-- Custom CSS File -->
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./styles/login-register.css">
 </head>
 <body>
 
@@ -26,7 +26,7 @@ if (isset($message)) {
         <input type="password" name="password" required placeholder="Enter Password" class="box">
         <input type="password" name="cpassword" required placeholder="Confirm Password" class="box">
         <input type="submit" name="submit" class="btn" value="Register Now">
-        <p>Already have an account? <a href="./login.php">Login now</a></p>
+        <p>Already have an account? <a href="./login-page.php">Login now</a></p>
     </form>
 </div>
 
