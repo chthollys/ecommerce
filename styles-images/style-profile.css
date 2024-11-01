@@ -1,0 +1,159 @@
+:root {
+    --primary-color: #3B1E54;
+    --secondary-color: #9B7EBD;
+    --text-color: #333;
+    --light-gray: #f4f4f4;
+    --white: #ffffff;
+    --sidebar-bg: #eceaea;
+}
+
+/* Struktur Utama */
+html, body {
+    height: 100vh;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--light-gray);
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+    overflow: hidden;
+}
+
+.profile-container {
+    display: flex;
+    gap: 50px;
+    height: auto;
+    margin: auto;
+    width: 70vw;
+    padding-top: 100px;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: var(--sidebar-bg);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.back-button {
+    align-self: flex-start;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profile-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sidebar h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.sidebar-menu li {
+    width: 100%;
+}
+
+.sidebar-menu a {
+    display: block;
+    padding: 10px 15px;
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 5px;
+    text-align: left;
+    margin-top: 12px;
+}
+
+.sidebar-menu a.active,
+.sidebar-menu a:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+/* Konten Profil */
+.profile-content {
+    flex: 1;
+    padding: 40px;
+    background-color: var(--white);
+}
+
+.profile-content h1 {
+    font-size: 24px;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.profile-form  {
+    width: 80%;
+}
+
+.profile-form label {
+    display: block;
+    font-weight: bold;
+    margin-top: 15px;
+    color: var(--text-color);
+}
+
+.profile-form input[type="text"],
+.profile-form input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 2px solid #ced4da;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.profile-form button {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.profile-form button:hover {
+    background-color: var(--secondary-color);
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
