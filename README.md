@@ -1,4 +1,4 @@
-# Deadline : 1 November (H-2)
+# Deadline : 1 November (cleared)
 
 ## Metode Pengerjaan : Collab in GitHub
 
