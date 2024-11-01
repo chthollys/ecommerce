@@ -1,5 +1,6 @@
 <?php
 session_start(); // Start the session only once here
+
 include 'loginProcess.php'; // Include the login logic
 ?>
 
