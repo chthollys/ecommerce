@@ -59,5 +59,5 @@
   > #EEEEEE | rgb(238, 238, 238)
 
   
-## Database Software  : mysql 
-## Nama database      : e-commerce_db
+## DBMS  : mysql 
+## Database : e-commerce_db
