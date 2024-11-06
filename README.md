@@ -1,6 +1,6 @@
 # Deadline : 1 November (cleared)
 
-## Metode Pengerjaan : Collab in GitHub
+## Completion Method : Collab in GitHub
 
 ## Page yang dibuat :
 
