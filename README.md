@@ -17,6 +17,8 @@
       > Halaman utama produk-produk.
   - cartProcess.php
       > Handling for product insertion to user cart.
+  - cartRegistry.php
+      > Handling display for user's cart item.
   - cartRemoval.php
       > Handling deletion item from user's cart.
   - deleteProduct.php
