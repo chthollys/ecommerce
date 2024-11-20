@@ -1,4 +1,4 @@
-# Deadline : 1 November (cleared)
+# Deadline : -
 
 ## Completion Method : Collab in GitHub
 
