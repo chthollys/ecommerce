@@ -32,7 +32,7 @@
         <section class="cart">
             <h2>Shopping Cart</h2>
             <?php foreach($carted_products as $product) : ?>
-            <?php $total_price += $product['price']?>
+            <?php $total_price += $product['total_price']?>
                 <div class="cart-items">
                     <div class="cart-item">
                         <img src="<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>">
@@ -41,10 +41,15 @@
                             <p class="price">Rp <?php echo htmlspecialchars($product['price']);?></p>
                             <div class="quantity">
                                 <label for="quantity">Quantity:</label>
-                                <input type="number" id="quantity" name="quantity" value="1" min="1" max="10">
+                                <input readonly type="number" id="quantity" value="<?php echo htmlspecialchars($product['quantity'])?>">
+                                <p class="price" style="margin-left: 10px; margin-bottom: 0;"> = Rp <?php echo htmlspecialchars($product['total_price']);?></p>
                             </div>
                         </div>
-                        <button class="remove-item"><i class="fas fa-trash"></i> Remove</button>
+                        <form method="post" action="cartRemoval.php">
+                            <input type="hidden" name="product_id" value="<?php echo $product['product_id']?>">
+                            <input name="qty_remove" style="width: 50px;" type="number" id="quantity" value="1" max="<?php echo htmlspecialchars($product['quantity'])?>">
+                            <button name="submit" class="remove-item" type="submit"><i class="fas fa-trash"></i> Remove</button>
+                        </form>
                     </div>
                     <!-- You can add more cart items here -->
                 </div>
@@ -124,4 +129,21 @@
         </div>
     </footer>
 </body>
+
+<script>
+    // JavaScript for real-time price update
+    document.addEventListener("DOMContentLoaded", function () {
+        const quantityInput = document.getElementById('quantity');
+        const priceElement = document.getElementById('total-price');
+        const unitPrice = <?php echo $product['price']; ?>;
+
+        // Update the price whenever the input value changes
+        quantityInput.addEventListener('input', function () {
+            const quantity = parseInt(quantityInput.value) || 1; // Ensure valid number
+            const totalPrice = quantity * unitPrice;
+            priceElement.textContent = totalPrice.toLocaleString(); // Format number
+        });
+    });
+</script>
+
 </html>

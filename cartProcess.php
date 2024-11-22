@@ -29,10 +29,11 @@ if ($product) {
     $product_image = $product['image'];
     $product_name = $product['name'];
     $quantity = isset($_POST['quantity']) ? (int)$_POST['quantity'] : 0;
+    $total_price = $product_price * $quantity;
 
     // Insert product into the cart or update quantity if already present
-    $stmt = mysqli_prepare($conn, "INSERT INTO cart (user_id, product_id, product_name, quantity, price, image) VALUES (?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE quantity = quantity + ?");
-    mysqli_stmt_bind_param($stmt, 'iisidsi', $user_id, $product_id, $product_name, $quantity, $product_price, $product_image, $quantity);
+    $stmt = mysqli_prepare($conn, "INSERT INTO cart (user_id, product_id, product_name, quantity, price, total_price, image) VALUES (?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE quantity = quantity + ?");
+    mysqli_stmt_bind_param($stmt, 'iisiddsi', $user_id, $product_id, $product_name, $quantity, $product_price, $total_price, $product_image, $quantity);
     mysqli_stmt_execute($stmt);
 
     // Redirect back to the product details page with a success message

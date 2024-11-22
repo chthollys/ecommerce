@@ -414,7 +414,6 @@ body {
     color: var(--accent-color);
     font-weight: bold;
     font-size: 1.1rem;
-    margin-bottom: 10px;
 }
 
 .quantity {

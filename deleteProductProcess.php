@@ -28,4 +28,6 @@ if (mysqli_stmt_execute($stmt)) {
     echo "Error deleting product: " . mysqli_error($conn);
 }
 
+mysqli_stmt_close($stmt);
+mysqli_close($conn);
 exit();
