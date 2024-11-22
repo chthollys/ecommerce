@@ -128,7 +128,7 @@ body {
 .product-info {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
 }
 
 .product-title {
@@ -248,8 +248,7 @@ body {
 /* Action Buttons */
 .product-actions {
     display: flex;
-    gap: 16px;
-    margin-top: 24px;
+    margin-top: 14px;
 }
 
 .add-to-cart, .buy-now {

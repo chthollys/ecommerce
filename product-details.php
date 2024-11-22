@@ -45,7 +45,7 @@ mysqli_close($conn);
                 <a href="home-page.php#featured-products">Products</a>
                 <a href="cart.php"><i class="fas fa-shopping-cart"></i> Cart</a>
                 <a href="profile.php">Profile</a>
-                <a href="product-details.php" class="active">Detail Products</a>
+                <a href="#" class="active">Detail Products</a>
             </div>
         </nav>
     </header>
@@ -67,7 +67,7 @@ mysqli_close($conn);
 
             <!-- Product Info Section -->
             <div class="product-info">
-                <h1 class="product-title">Nama Produk</h1>
+                <h1 class="product-title"><?php echo htmlspecialchars($product['name'])?></h1>
                 <div class="product-meta">
                     <div class="product-rating">
                         <i class="fas fa-star"></i>
@@ -98,9 +98,6 @@ mysqli_close($conn);
                     <div class="quantity-selector">
                         <h3>Jumlah</h3>
                         <div class="quantity-controls">
-                            <button class="qty-btn">-</button>
-                            <input type="number" value="1" min="1" max="100">
-                            <button class="qty-btn">+</button>
                             <span class="stock-info">Stok: <?php echo htmlspecialchars($product['stocks'])?></span>
                         </div>
                     </div>
@@ -118,10 +115,14 @@ mysqli_close($conn);
                 <?php endif; ?>
 
                 <div class="product-actions">
-                    <form action="cartProcess.php" method="post">
+                    <form action="cartProcess.php" method="post" class="product-actions">
                         <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
                         <input type="hidden" name="action" value="add_to_cart">
-                        <button type="submit" class="add-to-cart" name="add_to_cart">
+                        <div class="qty-container">
+                            <label for="quantity">Quantity:</label>
+                            <input type="number" id="quantity" name="quantity" value="1" min="1" max="10">
+                        </div>
+                            <button type="submit" class="add-to-cart" name="add_to_cart">
                             <i class="fas fa-shopping-cart"></i>
                             Tambah Keranjang
                         </button>

@@ -9,6 +9,7 @@ if (!isset($_SESSION['user_id'])) {
 $user_id = $_SESSION['user_id'];
 $product_id = isset($_POST['product_id']) ? (int)$_POST['product_id'] : 0;
 
+
 $conn = mysqli_connect('localhost', 'root', '', 'e-commerce_db');
 if (!$conn) {
     die("Database connection failed: " . mysqli_connect_error());
@@ -27,10 +28,11 @@ if ($product) {
     $product_price = $product['price'];
     $product_image = $product['image'];
     $product_name = $product['name'];
+    $quantity = isset($_POST['quantity']) ? (int)$_POST['quantity'] : 0;
 
     // Insert product into the cart or update quantity if already present
-    $stmt = mysqli_prepare($conn, "INSERT INTO cart (user_id, product_id, product_name, quantity, price, image) VALUES (?, ?, ?, 1, ?, ?) ON DUPLICATE KEY UPDATE quantity = quantity + 1");
-    mysqli_stmt_bind_param($stmt, 'iisds', $user_id, $product_id, $product_name, $product_price, $product_image);
+    $stmt = mysqli_prepare($conn, "INSERT INTO cart (user_id, product_id, product_name, quantity, price, image) VALUES (?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE quantity = quantity + ?");
+    mysqli_stmt_bind_param($stmt, 'iisidsi', $user_id, $product_id, $product_name, $quantity, $product_price, $product_image, $quantity);
     mysqli_stmt_execute($stmt);
 
     // Redirect back to the product details page with a success message
