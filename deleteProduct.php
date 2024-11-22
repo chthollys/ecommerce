@@ -37,7 +37,7 @@
                         <img src="<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>">
                         <div class="item-details">
                             <h3><?php echo htmlspecialchars($product['name']);?></h3>
-                            <p class="price">Rp <?php echo htmlspecialchars($product['price']);?></p>
+                            <p class="price">Rp <?php echo number_format($product['price'], 2);?></p>
                         </div>
                         <!-- Remove button form -->
                         <form action="deleteProductProcess.php" method="post" style="display:inline;">

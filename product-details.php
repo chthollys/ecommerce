@@ -81,7 +81,7 @@ mysqli_close($conn);
                 </div>
 
                 <div class="product-price">
-                    <span class="price">Rp<?php echo htmlspecialchars($product['price'])?></span>
+                    <span class="price">Rp<?php echo number_format($product['price'], 2)?></span>
                 </div>
 
                 Product Options
