@@ -21,9 +21,9 @@
                 Lokalaku
             </div>
             <div class="nav-links">
-                <a href="home-page.php">Home</a>
-                <a href="home-page.php#featured-products">Products</a>
-                <a href="cart.php" class="active"><i class="fas fa-shopping-cart"></i> Cart</a>
+                <a class="nav-link" href="home-page.php">Home</a>
+                <a class="nav-link" href="home-page.php#featured-products">Products</a>
+                <a class="nav-link active" href="cart.php"><i class="fas fa-shopping-cart"></i> Cart</a>
             </div>
         </nav>
     </header>

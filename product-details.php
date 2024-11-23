@@ -10,7 +10,7 @@ if (!$conn) {
 $product_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
 // Fetch the product details from the database
-$stmt = mysqli_prepare($conn, "SELECT name, price, image, stocks, description FROM products_registry WHERE id = ?");
+$stmt = mysqli_prepare($conn, "SELECT name, price, image, stocks, description, category FROM products_registry WHERE id = ?");
 mysqli_stmt_bind_param($stmt, 'i', $product_id);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
@@ -38,10 +38,9 @@ mysqli_close($conn);
     <header class="header">
         <nav class="navbar">
             <div class="logo">
-                <i class="fas fa-shopping-bag"></i> Lokalaku
+                <a class="nav-link" href="home-page.php"><i class="fas fa-shopping-bag"></i> Lokalaku</a>
             </div>
             <div class="nav-links">
-                <a href="home-page.php">Home</a>
                 <a href="home-page.php#featured-products">Products</a>
                 <a href="cart.php"><i class="fas fa-shopping-cart"></i> Cart</a>
                 <a href="profile.php">Profile</a>
@@ -67,7 +66,7 @@ mysqli_close($conn);
 
             <!-- Product Info Section -->
             <div class="product-info">
-                <h1 class="product-title"><?php echo htmlspecialchars($product['name'])?></h1>
+                <h1 class="product-title"><?php echo htmlspecialchars($product['name']) ?></h1>
                 <div class="product-meta">
                     <div class="product-rating">
                         <i class="fas fa-star"></i>
@@ -78,6 +77,7 @@ mysqli_close($conn);
                         <span>(150 ulasan)</span>
                     </div>
                     <div class="product-sold">Terjual 500+</div>
+                    <div class="product-sold"><?php echo htmlspecialchars($product['category']) ?></div>
                 </div>
 
                 <div class="product-price">

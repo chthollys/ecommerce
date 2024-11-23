@@ -48,6 +48,11 @@ body {
     gap: 0.5rem;
 }
 
+.logo a {
+    color: unset;
+    text-decoration: none;
+}
+
 .nav-links {
     display: flex;
     gap: 1.5rem;

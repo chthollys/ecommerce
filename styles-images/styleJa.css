@@ -70,18 +70,24 @@ body {
     gap: 1.5rem;
 }
 
-.nav-links a {
+.nav-link {
     color: var(--primary-color);
     text-decoration: none;
     padding: 0.5rem 1rem;
     border-radius: 4px;
     transition: all 0.3s ease;
+    align-self: center;
+    /* height: 50px; */
 }
 
-.nav-links a:hover,
-.nav-links a.active {
+.nav-link:hover,
+.nav-link.active {
     background: var(--primary-color);
     color: var(--white);
+}
+
+#profile-img:hover{
+    cursor: pointer;
 }
 
 /* Hero Section Styles */

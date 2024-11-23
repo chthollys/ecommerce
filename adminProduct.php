@@ -48,6 +48,22 @@ session_start();
         <label for="image">Image (JPEG, PNG):</label>
         <input type="file" id="image" name="image" accept=".jpg, .jpeg, .png" required>
 
+        <label for="category">Category:</label>
+        <div class="input-group">
+            <span class="input-group-addon"></span>
+            <select id="category" name="category" required>
+                <option value="" disabled selected>Select Category</option>
+                <option value="Fashion & Apparel">Fashion & Apparel</option>
+                <option value="Electronics & Gadgets">Electronics & Gadgets</option>
+                <option value="Home & Kitchen">Home & Kitchen</option>
+                <option value="Health & Beauty">Health & Beauty</option>
+                <option value="Books, Movies, & Media">Books, Movies, & Media</option>
+                <option value="Sports & Outdoor">Sports & Outdoor</option>
+                <option value="Food & Beverage">Food & Beverage</option>
+                <option value="Games & Hobbies">Games & Hobbies</option>
+            </select>
+        </div>
+
         <label for="price">Stocks:</label>
         <div class="input-group">
             <span class="input-group-addon"></span>
