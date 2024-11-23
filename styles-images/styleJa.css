@@ -401,6 +401,12 @@ body {
     margin-right: 20px;
 }
 
+.checkbox-product {
+    margin-right: 20px;
+    width: 20px;
+    height: 20px;
+}
+
 .item-details {
     flex-grow: 1;
 }

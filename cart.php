@@ -35,19 +35,21 @@
             <?php $total_price += $product['total_price']?>
                 <div class="cart-items">
                     <div class="cart-item">
+                    <!-- Parsing product checkout qty by price total (status => uncleared)-->
+                        <input class="checkbox-product" type="checkbox" data-price="<?php echo $product['total_price'] ?>" checked> 
                         <img src="<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>">
                         <div class="item-details">
                             <h3><?php echo htmlspecialchars($product['product_name']);?></h3>
-                            <p class="price">Rp <?php echo htmlspecialchars($product['price']);?></p>
+                            <p class="price">Rp <?php echo number_format($product['price'], 2);?></p>
                             <div class="quantity">
                                 <label for="quantity">Quantity:</label>
                                 <input readonly type="number" id="quantity" value="<?php echo htmlspecialchars($product['quantity'])?>">
-                                <p class="price" style="margin-left: 10px; margin-bottom: 0;"> = Rp <?php echo htmlspecialchars($product['total_price']);?></p>
+                                <p class="price" style="margin-left: 10px; margin-bottom: 0;"> = Rp <?php echo number_format($product['total_price'], 2);?></p>
                             </div>
                         </div>
                         <form method="post" action="cartRemoval.php">
                             <input type="hidden" name="product_id" value="<?php echo $product['product_id']?>">
-                            <input name="qty_remove" style="width: 50px;" type="number" id="quantity" value="1" max="<?php echo htmlspecialchars($product['quantity'])?>">
+                            <input name="qty_remove" style="width: 50px;" type="number" id="quantity" min="1" max="<?php echo htmlspecialchars($product['quantity'])?>">
                             <button name="submit" class="remove-item" type="submit"><i class="fas fa-trash"></i> Remove</button>
                         </form>
                     </div>
@@ -58,7 +60,7 @@
                 <h3>Order Summary</h3>
                 <div class="summary-item">
                     <span>Subtotal:</span>
-                    <span>Rp <?php echo $total_price ?></span>
+                    <span class="total-price">Rp <?php echo number_format($total_price) ?></span>
                 </div>
                 <!-- <div class="summary-item">
                     <span>Shipping:</span>
@@ -66,7 +68,7 @@
                 </div> -->
                 <div class="summary-item total">
                     <span>Total:</span>
-                    <span>Rp <?php echo $total_price ?></span>
+                    <span class="total-price">Rp <?php echo number_format($total_price) ?></span>
                 </div>
             </div>
 
@@ -144,6 +146,32 @@
             priceElement.textContent = totalPrice.toLocaleString(); // Format number
         });
     });
+
+    // function calculateTotal() {
+    //     // Get all checkboxes
+    //     const checkboxes = document.querySelectorAll('.checkbox-product');
+
+    //     let total = 0;
+
+    //     // Loop through checkboxes and add the price of checked products
+    //     checkboxes.forEach((checkbox) => {
+    //         if (checkbox.checked) {
+    //             total += parseFloat(checkbox.dataset.price);
+    //         }
+    //     });
+
+    //     // Update the total price in the DOM
+    //     document.querySelectorAll('.total-price').textContent = `Rp ${total.toFixed(2)}`;
+    // }
+
+    // // Attach event listeners to all product checkboxes
+    // document.querySelectorAll('.checkbox-product').forEach((checkbox) => {
+    //     checkbox.addEventListener('change', calculateTotal);
+    // });
+
+    // // Initial calculation to set the total price on page load
+    // calculateTotal();
+
 </script>
 
 </html>
