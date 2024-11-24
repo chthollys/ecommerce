@@ -46,9 +46,6 @@ mysqli_close($conn);
             </a>
         </div>
         <div class="nav-links">
-            <a class="nav-link" href="#featured-products">Products</a>
-            <a class="nav-link" href="cart.php"><i class="fas fa-shopping-cart"></i> Cart</a>
-            <a class="nav-link" href="profile-dashboard.php">Profile</a>
             <a class="nav-link" href="logoutProcess.php">Log Out</a>
 
             <!-- Display Admin link only if the user is an admin -->

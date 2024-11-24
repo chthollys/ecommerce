@@ -21,9 +21,10 @@ session_start();
             Lokalaku
         </div>
         <div class="nav-links">
-            <a href="home-page.php" >Home</a>
-            <a href="adminProduct.php" class="active">Add Product</a>
-            <a href="deleteProduct.php">Delete Product</a>
+            <a class="nav-link" href="home-page.php" >Home</a>
+            <a class="nav-link active" href="adminProduct.php" >Add Product</a>
+            <a class="nav-link" href="deleteProduct.php">Delete Product</a>
+            <a href="profile-dashboard.php"><img src="./<?php echo htmlspecialchars($profile_img[0]['profile_img']) ?>" width="50px" height="50px" style="border-radius: 50% ; object-fit: cover"></a>
         </div>
     </nav>
 </header>

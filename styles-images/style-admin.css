@@ -53,25 +53,6 @@ body {
     margin-right: 10px;
 }
 
-.nav-links {
-    display: flex;
-    gap: 20px;
-}
-
-.nav-links a {
-    color: var(--white);
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 16px;
-    padding: 8px 12px;
-    transition: background-color 0.3s ease, border-radius 0.3s ease;
-}
-
-.nav-links a.active,
-.nav-links a:hover {
-    background-color: var(--secondary-color);
-    border-radius: 5px;
-}
 
 /* Container Styling */
 .container {
@@ -80,7 +61,7 @@ body {
     background: var(--white);
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 80px; /* Space for fixed header */
+    margin-top: 200px; /* Space for fixed header */
 }
 
 h1 {

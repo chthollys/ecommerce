@@ -9,7 +9,7 @@ if (isset($_POST['submit'])) {
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = $_POST['password'];
 
-    $stmt = mysqli_prepare($conn, "SELECT id, password, is_admin FROM `user` WHERE email = ?");
+    $stmt = mysqli_prepare($conn, "SELECT id, password, is_admin, profile_img FROM `user` WHERE email = ?");
     if (!$stmt) {
         die("Query preparation failed: " . mysqli_error($conn));
     }
@@ -23,6 +23,7 @@ if (isset($_POST['submit'])) {
 
         if (password_verify($password, $row['password'])) {
             $_SESSION['user_id'] = $row['id'];
+            $_SESSION['profile_img'] = $row['profile_img'];
             if($row['is_admin'] == 1) {
                 $_SESSION['is_admin'] = true;
             }

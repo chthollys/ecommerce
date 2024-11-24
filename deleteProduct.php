@@ -20,10 +20,10 @@
                 Lokalaku
             </div>
             <div class="nav-links">
-                <a href="home-page.php">Home</a>
-                <a href="home-page.php#featured-products">Products</a>
-                <a href="adminProduct.php">Add Product</a>
-                <a href="cart.php" class="active">Delete Product</a>
+                <a class="nav-link" href="home-page.php">Home</a>
+                <a class="nav-link" href="adminProduct.php">Add Product</a>
+                <a class="nav-link active" href="cart.php" >Delete Product</a>
+                <a href="profile-dashboard.php"><img src="./<?php echo htmlspecialchars($profile_img[0]['profile_img']) ?>" width="50px" height="50px" style="border-radius: 50% ; object-fit: cover"></a>
             </div>
         </nav>
     </header>
