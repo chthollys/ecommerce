@@ -21,6 +21,8 @@
       > Handling display for user's cart item.
   - cartRemoval.php
       > Handling deletion item from user's cart.
+  - cartInclude.php
+      > Handling checkout logic based on checkbox.
   - deleteProduct.php
       > Interface for admin to takedown registered product.
   - deleteProductProcess.php
