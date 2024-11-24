@@ -8,7 +8,7 @@ if (!$conn) {
     die("Database connection failed: " . mysqli_connect_error());
 }
 
-$stmt = mysqli_prepare($conn, "SELECT product_id, product_name, price, image, quantity, total_price FROM cart WHERE user_id = ?");
+$stmt = mysqli_prepare($conn, "SELECT product_id, product_name, price, image, quantity, total_price, status FROM cart WHERE user_id = ?");
 mysqli_stmt_bind_param($stmt, 'i', $user_id);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);

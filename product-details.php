@@ -38,7 +38,7 @@ mysqli_close($conn);
     <header class="header">
         <nav class="navbar">
             <div class="logo">
-                <a class="nav-link" href="home-page.php"><i class="fas fa-shopping-bag"></i> Lokalaku</a>
+                <a href="home-page.php"><i class="fas fa-shopping-bag"></i> Lokalaku</a>
             </div>
             <div class="nav-links">
                 <a href="home-page.php#featured-products">Products</a>

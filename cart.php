@@ -32,11 +32,23 @@
         <section class="cart">
             <h2>Shopping Cart</h2>
             <?php foreach($carted_products as $product) : ?>
-            <?php $total_price += $product['total_price']?>
+            <?php  
+                if ($product['status'] == 1) {
+                    $total_price += $product['total_price'];
+                }
+            ?>
                 <div class="cart-items">
                     <div class="cart-item">
                     <!-- Parsing product checkout qty by price total (status => uncleared)-->
-                        <input class="checkbox-product" type="checkbox" data-price="<?php echo $product['total_price'] ?>" checked> 
+                        <form action="cartInclude.php" method="post">
+                            <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id'] ?>">
+                            <input type="hidden" name="product_id" value="<?php echo $product['product_id'] ?>" >
+                            <input type="hidden" name="status" value="0" >
+                            <input type="checkbox" class="checkbox-product" name="status" value="1"
+                            <?php if ($product['status'] == 1) echo "checked"; ?>
+                            onchange="this.form.submit()"
+                            >
+                        </form>
                         <img src="<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>">
                         <div class="item-details">
                             <h3><?php echo htmlspecialchars($product['product_name']);?></h3>
@@ -147,30 +159,6 @@
         });
     });
 
-    // function calculateTotal() {
-    //     // Get all checkboxes
-    //     const checkboxes = document.querySelectorAll('.checkbox-product');
-
-    //     let total = 0;
-
-    //     // Loop through checkboxes and add the price of checked products
-    //     checkboxes.forEach((checkbox) => {
-    //         if (checkbox.checked) {
-    //             total += parseFloat(checkbox.dataset.price);
-    //         }
-    //     });
-
-    //     // Update the total price in the DOM
-    //     document.querySelectorAll('.total-price').textContent = `Rp ${total.toFixed(2)}`;
-    // }
-
-    // // Attach event listeners to all product checkboxes
-    // document.querySelectorAll('.checkbox-product').forEach((checkbox) => {
-    //     checkbox.addEventListener('change', calculateTotal);
-    // });
-
-    // // Initial calculation to set the total price on page load
-    // calculateTotal();
 
 </script>
 
