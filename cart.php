@@ -39,7 +39,7 @@
             ?>
                 <div class="cart-items">
                     <div class="cart-item">
-                    <!-- Parsing product checkout qty by price total (status => uncleared)-->
+                    <!-- Parsing product checkout qty by price total (status => cleared) -->
                         <form action="cartInclude.php" method="post">
                             <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id'] ?>">
                             <input type="hidden" name="product_id" value="<?php echo $product['product_id'] ?>" >
