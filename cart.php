@@ -49,7 +49,7 @@
                             onchange="this.form.submit()"
                             >
                         </form>
-                        <img src="<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>">
+                        <a href="./product-details.php?id=<?php echo $product['product_id']?>"><img src="<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>"></a>
                         <div class="item-details">
                             <h3><?php echo htmlspecialchars($product['product_name']);?></h3>
                             <p class="price">Rp <?php echo number_format($product['price'], 2);?></p>
