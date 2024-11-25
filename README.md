@@ -1,67 +1,57 @@
-# Deadline : -
+# E-Commerce Website Documentation
 
-## Completion Method : Collab in GitHub
+## Project Overview
+A full-featured e-commerce platform with user and admin functionalities.
 
-## Page yang dibuat :
+## Tech Stack
+- **Backend:** PHP
+- **Database:** MySQL (e-commerce_db)
+- **Frontend:** HTML, CSS, JavaScript
 
-  - adminProduct.php
-    
-      > Admin page for register product and delete registered product.
-  - registerProcess.php
-      > handle register process.
-  - adminProductProcess.php
-      > Backend process for adminProduct page (retrieving and insert to database).
-  - cart.php
-      > Cart product page.
-  - home-page.php
-      > Halaman utama produk-produk.
-  - cartProcess.php
-      > Handling for product insertion to user cart.
-  - cartRegistry.php
-      > Handling display for user's cart item.
-  - cartRemoval.php
-      > Handling deletion item from user's cart.
-  - cartInclude.php
-      > Handling checkout logic based on checkbox.
-  - deleteProduct.php
-      > Interface for admin to takedown registered product.
-  - deleteProductProcess.php
-      > Handling product tekaedown in admin's store.
-  - home-page.php
-      > Starting page (main page).
-  - homeProcess.php
-      > Loading registered products to home-page.
-  - login-page.php
-      > Login page (user / admin)
-  - loginProcess.php
-      > Handling process for account verification with email and password.
-  - logoutProcess.php
-      > Handle log out process
-  - product-details.php
-      > Dedicated page for each product with id based.
-  - productRegistry.php
-      > Loading display of the products into the deleteProduct page.
-  - profile-dashboard.php
-      > User / Admin prodile dashboard.
-  - profileProcess.php
-      > Handling logic behind user / admin's profile data.
-  - register-page
-      > Register page for creating account.
-  - registerProcess.php
-      > Handling for account creation with username, email, and password.
-  - thank-you.php
-      > Landing page for successfull transaction after checkout succeed.
+## Color Theme
+![Color Theme Palette](../styles-images/color-themes.png)
 
-## Color Theme :
-  ![theme color](theme_color.png)
-  > #3B1E54 | rgb(59, 30, 84)
+| Color | Hex | RGB |
+|-------|-----|-----|
+| Primary Dark Grey Blue | #2C3E50 | rgb(44,62,80) |
+| Primary Light Blue | #3498DB | rgb(52,152,219) |
+| Bright red | #E74C3C | rgb(231, 76, 60) |
+| White | #FFFFFF | rgb(255, 255, 255) |
 
-  > #9B7EBD | rgb(155, 126, 189)
+## File Structure
 
-  > #D4BEE4 | rgb(212, 190, 228)
+### Authentication
+- `login-page.php` - User/admin login interface
+- `loginProcess.php` - Email and password verification
+- `register-page.php` - New account registration interface
+- `registerProcess.php` - Account creation handler
+- `logoutProcess.php` - Session termination handler
 
-  > #EEEEEE | rgb(238, 238, 238)
+### User Interface
+- `home-page.php` - Main product listing page
+- `homeProcess.php` - Product loading handler
+- `product-details.php` - Individual product view
+- `profile-dashboard.php` - User/admin profile management
+- `profileProcess.php` - Profile data handler
 
-  
-## DBMS  : mysql 
-## Database : e-commerce_db
+### Shopping Cart
+- `cart.php` - Shopping cart interface
+- `cartProcess.php` - Cart item addition handler
+- `cartRegistry.php` - Cart items display handler
+- `cartRemoval.php` - Cart item deletion handler
+- `cartInclude.php` - Checkout logic handler
+- `thank-you.php` - Post-checkout success page
+
+### Admin Panel
+- `adminProduct.php` - Product management interface
+- `adminProductProcess.php` - Product database operations
+- `deleteProduct.php` - Product removal interface
+- `deleteProductProcess.php` - Product deletion handler
+- `productRegistry.php` - Product listing in admin panel
+
+## Database
+The application uses MySQL database named `e-commerce_db`
+
+## Development
+- **Collaboration Method:** GitHub
+- **Version Control:** Git
