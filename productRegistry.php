@@ -10,6 +10,9 @@ $stmt = mysqli_prepare($conn, "SELECT id, name, price, image FROM products_regis
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 
+// Fetching Profile Image
+$profile_image = isset($_SESSION['profile_img']) ? $_SESSION['profile_img'] : 0;
+
 // Initialize an empty array for storing products
 $registered_products = [];
 if ($result && mysqli_num_rows($result) > 0) {

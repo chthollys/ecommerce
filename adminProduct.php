@@ -1,6 +1,30 @@
 <?php
 session_start();
+
+$conn = mysqli_connect('localhost', 'root', '', 'e-commerce_db');
+
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 0;
+$profile_image = isset($_SESSION['profile_img']) ? $_SESSION['profile_img'] : 0;
+
+// Fetching profile pict
+$stmt2 = mysqli_prepare($conn, "SELECT profile_img from user WHERE id = ? ");
+mysqli_stmt_bind_param($stmt2, 'i', $user_id);
+mysqli_stmt_execute($stmt2);
+$result2 = mysqli_stmt_get_result($stmt2);
+$profile_img = mysqli_fetch_assoc($result2);
+
+if (!$profile_img) {
+    echo "Profile picture not found.";
+    exit();
+}
+mysqli_stmt_close($stmt2);
+mysqli_close($conn);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +48,7 @@ session_start();
             <a class="nav-link" href="home-page.php" >Home</a>
             <a class="nav-link active" href="adminProduct.php" >Add Product</a>
             <a class="nav-link" href="deleteProduct.php">Delete Product</a>
-            <a href="profile-dashboard.php"><img src="./<?php echo htmlspecialchars($profile_img[0]['profile_img']) ?>" width="50px" height="50px" style="border-radius: 50% ; object-fit: cover"></a>
+            <a href="profile-dashboard.php"><img src="./<?php echo $profile_image ?>" width="50px" height="50px" style="border-radius: 50% ; object-fit: cover"></a>
         </div>
     </nav>
 </header>

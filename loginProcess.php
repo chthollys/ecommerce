@@ -23,6 +23,7 @@ if (isset($_POST['submit'])) {
 
         if (password_verify($password, $row['password'])) {
             $_SESSION['user_id'] = $row['id'];
+            $_SESSION['profile_img'] = $row['profile_img'];
             if($row['is_admin'] == 1) {
                 $_SESSION['is_admin'] = true;
             }

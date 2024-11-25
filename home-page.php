@@ -26,7 +26,7 @@
             <a class="nav-link" href="#featured-products">Products</a>
             <a class="nav-link" href="cart.php"><i class="fas fa-shopping-cart"></i> Cart</a>
             <a class="nav-link" href="logoutProcess.php">Log Out</a>
-            <a href="profile-dashboard.php"><img src="./<?php echo htmlspecialchars($profile_img[0]['profile_img']) ?>" width="50px" height="50px" style="border-radius: 50% ; object-fit: cover"></a>
+            <a href="profile-dashboard.php"><img src="./<?php echo $profile_image ?>" width="50px" height="50px" style="border-radius: 50% ; object-fit: cover"></a>
         </div>
         
     </nav>
