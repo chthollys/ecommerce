@@ -213,6 +213,14 @@ body {
     margin-bottom: 1rem;
 }
 
+.product-meta {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    color: #666;
+    font-size: 14px;
+}
+
 .shop-now-btn {
     display: block;
     width: 100%;
