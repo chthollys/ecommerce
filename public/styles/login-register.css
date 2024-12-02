@@ -33,7 +33,7 @@
 }
 
 body{
-   background: url('./img/login-register-bg.jpg');
+   background: url('../img/login-register-bg.jpg');
    overflow: hidden;
 }
 
