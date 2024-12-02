@@ -9,7 +9,7 @@ A full-featured e-commerce platform with user and admin functionalities.
 - **Frontend:** HTML, CSS, JavaScript
 
 ## Color Theme
-<img src="./styles-images/color-themes.png" alt="Color Theme Palette" width="500"/>
+<img src="./public/styles/color-themes.png" alt="Color Theme Palette" width="500"/>
 
 | Color | Hex | RGB |
 |-------|-----|-----|
