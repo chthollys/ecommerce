@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
     if (in_array($file_ext, $allowed_extensions)) {
         // Define the target directory and unique file name
         $new_file_name = uniqid('', true) . '.' . $file_ext;
-        $target_dir = '../styles-images/img/' . $new_file_name;
+        $target_dir = '../public/img/' . $new_file_name;
 
         // Move the uploaded file to the target directory
         if (move_uploaded_file($file_tmp, $target_dir)) {
@@ -40,7 +40,7 @@ if (isset($_POST['submit'])) {
 
             if (mysqli_stmt_execute($insert_stmt)) {
                 $_SESSION['messageA'] = 'Product Registered successfully!';
-                header('Location: ../public/adminProduct.php?success=1'); // Redirect to adminProduct.php with success flag
+                header('Location: ../views/adminProduct.php?success=1'); // Redirect to adminProduct.php with success flag
                 exit();
             } else {
                 $_SESSION['messageA'] = 'Registration failed. Please try again.';

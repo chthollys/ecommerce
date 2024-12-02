@@ -10,7 +10,7 @@ include '../private/loginProcess.php'; // Include the login logic
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Login</title>
-   <link rel="stylesheet" href="../styles-images/login-register.css">
+   <link rel="stylesheet" href="../public/styles/login-register.css">
 </head>
 <body>
 
@@ -28,7 +28,7 @@ if (isset($_SESSION['message'])) {
       <input type="email" name="email" required placeholder="Enter Email" class="box">
       <input type="password" name="password" required placeholder="Enter Password" class="box">
       <input type="submit" name="submit" class="btn" value="Login Now">
-      <p>Don't have an account? <a href="../public/register-page.php">Register Now</a></p>
+      <p>Don't have an account? <a href="../views/register-page.php">Register Now</a></p>
    </form>
 </div>
 

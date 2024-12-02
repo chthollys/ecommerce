@@ -5,6 +5,7 @@
     --text-color: #333;
     --light-gray: #f4f4f4;
     --white: #ffffff;
+    --height-graybox: 40px;
 }
 
 /* General Styling */
@@ -17,7 +18,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
 }
 
 /* Navbar Styling */
@@ -61,7 +61,8 @@ body {
     background: var(--white);
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 200px; /* Space for fixed header */
+    margin-top: 100px; /* Space for fixed header */
+    margin-bottom: 50px;
 }
 
 h1 {
@@ -114,7 +115,7 @@ label {
     border-left: none;
     border-radius: 0 8px 8px 0;
     font-size: 16px;
-    height: 40px; /* Samakan dengan tinggi addon */
+    height: var(--height-graybox); /* Samakan dengan tinggi addon */
     box-sizing: border-box;
 }
 
@@ -149,4 +150,6 @@ button:hover {
     background-color: var(--secondary-color);
 }
 
-
+#category {
+    height: calc(var(--height-graybox) - 1px);
+}

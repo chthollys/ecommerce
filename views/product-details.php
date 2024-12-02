@@ -9,18 +9,18 @@ include '../private/product-detailsProcess.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lokalaku - Product Detail</title>
-    <link rel="stylesheet" href="../styles-images/style-detailproduct.css">
+    <link rel="stylesheet" href="../public/styles/style-detailproduct.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <header class="header">
         <nav class="navbar">
             <div class="logo">
-                <a href="../public/home-page.php"><i class="fas fa-shopping-bag"></i> Lokalaku</a>
+                <a href="../views/home-page.php"><i class="fas fa-shopping-bag"></i> Lokalaku</a>
             </div>
             <div class="nav-links">
-                <a href="../public/cart.php"><i class="fas fa-shopping-cart"></i> Cart</a>
-                <a href="../public/profile-dashboard.php"><img src="./<?php echo htmlspecialchars($user['profile_img'] ?? 0) ?>" width="50px" height="50px" style="border-radius: 50% ; object-fit: cover"></a>            </div>
+                <a href="../views/cart.php"><i class="fas fa-shopping-cart"></i> Cart</a>
+                <a href="../views/profile-dashboard.php"><img src="./<?php echo htmlspecialchars($user['profile_img'] ?? 0) ?>" width="50px" height="50px" style="border-radius: 50% ; object-fit: cover"></a>            </div>
         </nav>
     </header>
     
@@ -119,7 +119,7 @@ include '../private/product-detailsProcess.php';
         <!-- Product Description -->
         <div class="product-description">
             <h3>Deskripsi Produk</h3>
-            <p><?php echo htmlspecialchars($product['description'])?></p>
+            <p><?php echo nl2br(htmlspecialchars($product['description'])) ?></p>
         </div>
     </main>
 

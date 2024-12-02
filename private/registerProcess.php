@@ -34,7 +34,7 @@ if (isset($_POST['submit'])) {
 
             if (mysqli_stmt_execute($insert_stmt)) {
                 $_SESSION['message'] = 'Registered successfully!';
-                header('Location: ../public/login-page.php');
+                header('Location: ../views/login-page.php');
                 exit();
             } else {
                 $_SESSION['message'] = 'Registration failed. Please try again.';

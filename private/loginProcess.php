@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
             if($row['is_admin'] == 1) {
                 $_SESSION['is_admin'] = true;
             }
-            header('Location: ../public/home-page.php');
+            header('Location: ../views/home-page.php');
             exit(); // Stop further script execution
         } else {
             $_SESSION['message'] = 'Incorrect password or email !';

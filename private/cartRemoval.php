@@ -27,12 +27,12 @@ if(isset($_POST['submit'])) {
         $stmt2 = mysqli_prepare($conn, "UPDATE `cart` SET quantity = quantity - ?, total_price = total_price - (? * ?) WHERE product_id = ? AND user_id = ? ");
         mysqli_stmt_bind_param($stmt2, 'iiiii', $qty_remove, $qty_remove, $priceInCart, $product_id, $user_id);
         mysqli_stmt_execute($stmt2);
-        header('Location: ../public/cart.php');
+        header('Location: ../views/cart.php');
     } else if ($qty_remove == $quantityInCart) {
         $stmt2 = mysqli_prepare($conn, "DELETE FROM `cart` WHERE product_id = ? AND user_id = ? ");
         mysqli_stmt_bind_param($stmt2, 'ii', $product_id, $user_id);
         mysqli_stmt_execute($stmt2);
-        header('Location: ../public/cart.php');
+        header('Location: ../views/cart.php');
     } else {
         echo "Error in quantitiy removal attempt.";
     }

@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lokalaku - Cart</title>
-    <link rel="stylesheet" href="../styles-images/styleJa.css">
+    <link rel="stylesheet" href="../public/styles/styleJa.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -21,10 +21,10 @@
                 Lokalaku
             </div>
             <div class="nav-links">
-                <a class="nav-link" href="../public/home-page.php">Home</a>
-                <a class="nav-link" href="../public/adminProduct.php">Add Product</a>
-                <a class="nav-link active" href="../public/cart.php" >Delete Product</a>
-                <a href="../public/profile-dashboard.php"><img src="./<?php echo $user['profile_img'] ?? 0 ?>" width="50px" height="50px" style="border-radius: 50% ; object-fit: cover"></a>
+                <a class="nav-link" href="../views/home-page.php">Home</a>
+                <a class="nav-link" href="../views/adminProduct.php">Add Product</a>
+                <a class="nav-link active" href="../views/cart.php" >Delete Product</a>
+                <a href="../views/profile-dashboard.php"><img src="./<?php echo $user['profile_img'] ?? 0 ?>" width="50px" height="50px" style="border-radius: 50% ; object-fit: cover"></a>
             </div>
         </nav>
     </header>

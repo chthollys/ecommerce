@@ -11,7 +11,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lokalaku - Home</title>
-    <link rel="stylesheet" href="../styles-images/styleJa.css">
+    <link rel="stylesheet" href="../public/styles/styleJa.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -19,16 +19,16 @@
 <header class="header">
     <nav class="navbar">
         <div class="logo">
-            <a href="../public/home-page.php" class="unset">
+            <a href="../views/home-page.php" class="unset">
                 <i class="fas fa-shopping-bag"></i>
                 Lokalaku
             </a>
         </div>
         <div class="nav-links">
             <a class="nav-link" href="#featured-products">Products</a>
-            <a class="nav-link" href="../public/cart.php"><i class="fas fa-shopping-cart"></i> Cart</a>
+            <a class="nav-link" href="../views/cart.php"><i class="fas fa-shopping-cart"></i> Cart</a>
             <a class="nav-link" href="../private/logoutProcess.php">Log Out</a>
-            <a href="../public/profile-dashboard.php"><img src="./<?php echo $user['profile_img'] ?>" width="50px" height="50px" style="border-radius: 50% ; object-fit: cover"></a>
+            <a href="../views/profile-dashboard.php"><img src="./<?php echo $user['profile_img'] ?>" width="50px" height="50px" style="border-radius: 50% ; object-fit: cover"></a>
         </div>
         
     </nav>
@@ -51,7 +51,7 @@
                         <img src="<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>">
                         <h3><?php echo htmlspecialchars($product['name']); ?></h3>
                         <p class="price">Rp<?php echo number_format($product['price'], 2); ?></p>
-                        <a href="../public/product-details.php?id=<?php echo $product['id']; ?>" class="shop-now-btn">Buy Now</a>
+                        <a href="../views/product-details.php?id=<?php echo $product['id']; ?>" class="shop-now-btn">Buy Now</a>
                     </div>
                 <?php endforeach; ?>
             </div>

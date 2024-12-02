@@ -22,7 +22,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     mysqli_stmt_bind_param($stmt, 'iii', $status, $user_id, $product_id);
     if ($stmt->execute()) {
         echo "Status updated successfully.";
-        header('Location: ../public/cart.php');
+        header('Location: ../views/cart.php');
     } else {
         echo "Failed to update status: " . $stmt->error;
     }

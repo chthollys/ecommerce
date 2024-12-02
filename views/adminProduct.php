@@ -10,8 +10,8 @@ include '../config/sessionInfo.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles-images/style-admin.css">
-    <link rel="stylesheet" href="../styles-images/styleJa.css">
+    <link rel="stylesheet" href="../public/styles/style-admin.css">
+    <link rel="stylesheet" href="../public/styles/styleJa.css">
     <title>Admin - Add New Product</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -21,15 +21,15 @@ include '../config/sessionInfo.php';
 <header class="header">
     <nav class="navbar">
         <div class="logo">
-            <a class="unset" href="../public/home-page.php">
+            <a class="unset" href="../views/home-page.php">
                 <i class="fas fa-shopping-bag"></i>
                 Lokalaku
             </a>
         </div>
         <div class="nav-links">
-            <a class="nav-link active" href="../public/adminProduct.php" >Add Product</a>
-            <a class="nav-link" href="../public/deleteProduct.php">Delete Product</a>
-            <a href="../public/profile-dashboard.php"><img src="./<?php echo $user['profile_img'] ?>" width="50px" height="50px" style="border-radius: 50% ; object-fit: cover"></a>
+            <a class="nav-link active" href="../views/adminProduct.php" >Add Product</a>
+            <a class="nav-link" href="../views/deleteProduct.php">Delete Product</a>
+            <a href="../views/profile-dashboard.php"><img src="./<?php echo $user['profile_img'] ?>" width="50px" height="50px" style="border-radius: 50% ; object-fit: cover"></a>
         </div>
     </nav>
 </header>
@@ -56,7 +56,7 @@ include '../config/sessionInfo.php';
 
         <label for="category">Category:</label>
         <div class="input-group">
-            <span class="input-group-addon"></span>
+            <span class="input-group-addon resize"></span>
             <select id="category" name="category" required>
                 <option value="" disabled selected>Select Category</option>
                 <option value="Fashion & Apparel">Fashion & Apparel</option>
@@ -77,7 +77,7 @@ include '../config/sessionInfo.php';
         </div>
 
         <label for="description">Description:</label>
-        <textarea id="description" name="description" required cols="50" rows="4"></textarea>
+        <textarea id="description" name="description" required cols="60" rows="20"></textarea>
 
         <button type="submit" name="submit">Add Product</button>
     </form>

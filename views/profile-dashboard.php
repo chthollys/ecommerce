@@ -11,8 +11,8 @@ include '../config/sessionInfo.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil Saya</title>
-    <link rel="stylesheet" href="../styles-images/style-profile.css">
-    <link rel="stylesheet" href="../styles-images/styleJa.css">
+    <link rel="stylesheet" href="../public/styles/style-profile.css">
+    <link rel="stylesheet" href="../public/styles/styleJa.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -20,18 +20,18 @@ include '../config/sessionInfo.php';
 <header class="header">
     <nav class="navbar">
         <div class="logo">
-            <a href="../public/home-page.php" class="unset">
+            <a href="../views/home-page.php" class="unset">
                 <i class="fas fa-shopping-bag"></i>
                 Lokalaku
             </a>
         </div>
         <div class="nav-links">
-            <a class="nav-link" href="../public/cart.php"><i class="fas fa-shopping-cart"></i> Cart</a>
+            <a class="nav-link" href="../views/cart.php"><i class="fas fa-shopping-cart"></i> Cart</a>
             <a class="nav-link" href="../private/logoutProcess.php">Log Out</a>
 
             <!-- Display Admin link only if the user is an admin -->
             <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']): ?>
-                <a class="nav-link" href="../public/adminProduct.php" class="active">Admin</a>
+                <a class="nav-link" href="../views/adminProduct.php" class="active">Admin</a>
             <?php endif; ?>
         </div>
     </nav>

@@ -24,18 +24,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if (in_array($file_ext, $allowed_extensions)) {
             $new_file_name = uniqid('', true) . '.' . $file_ext;
-            $target_dir = '../styles-images/img/' . $new_file_name;
+            $target_dir = '../public/img/' . $new_file_name;
 
             if (move_uploaded_file($file_tmp, $target_dir)) {
                 $image_path = $target_dir;
             } else {
                 $_SESSION['messageA'] = 'Error uploading image.';
-                header('Location: ../public/profile-dashboard.php?error=1');
+                header('Location: ../views/profile-dashboard.php?error=1');
                 exit();
             }
         } else {
             $_SESSION['messageA'] = 'Invalid file type. Only JPG, JPEG, and PNG are allowed.';
-            header('Location: ../public/profile-dashboard.php?error=1');
+            header('Location: ../views/profile-dashboard.php?error=1');
             exit();
         }
     }
@@ -52,11 +52,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (mysqli_stmt_execute($update_stmt)) {
         $_SESSION['messageA'] = 'Profile updated successfully!';
-        header('Location: ../public/profile-dashboard.php?success=1'); // Redirect to profile page with success flag
+        header('Location: ../views/profile-dashboard.php?success=1'); // Redirect to profile page with success flag
         exit();
     } else {
         $_SESSION['messageA'] = 'Update failed. Please try again.';
-        header('Location: ../public/profile-dashboard.php?error=1');
+        header('Location: ../views/profile-dashboard.php?error=1');
         exit();
     }
 

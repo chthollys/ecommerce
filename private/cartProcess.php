@@ -29,7 +29,7 @@ if ($product) {
     mysqli_stmt_execute($stmt);
 
     // Redirect back to the product details page with a success message
-    header("Location: ../public/product-details.php?added=true&id=$product_id");
+    header("Location: ../views/product-details.php?added=true&id=$product_id");
     exit();
 } else {
     echo "Product not found.";

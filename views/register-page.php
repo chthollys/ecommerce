@@ -9,7 +9,7 @@ include 'registerProcess.php'; // Include the registration logic
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="../styles-images/login-register.css">
+    <link rel="stylesheet" href="../public/styles/login-register.css">
 </head>
 <body>
 
@@ -28,7 +28,7 @@ if (isset($_SESSION['message'])) {
         <input type="password" name="password" required placeholder="Enter Password" class="box">
         <input type="password" name="cpassword" required placeholder="Confirm Password" class="box">
         <input type="submit" name="submit" class="btn" value="Register Now">
-        <p>Already have an account? <a href="../public/login-page.php">Login Now</a></p>
+        <p>Already have an account? <a href="../views/login-page.php">Login Now</a></p>
     </form>
 </div>
 
