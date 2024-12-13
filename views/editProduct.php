@@ -23,7 +23,7 @@
             <div class="nav-links">
                 <a class="nav-link" href="../views/home-page.php">Home</a>
                 <a class="nav-link" href="../views/adminProduct.php">Add Product</a>
-                <a class="nav-link active" href="../views/cart.php" >Delete Product</a>
+                <a class="nav-link active" href="#" >Edit Product</a>
                 <a href="../views/profile-dashboard.php"><img src="./<?php echo $user['profile_img'] ?? 0 ?>" width="50px" height="50px" style="border-radius: 50% ; object-fit: cover"></a>
             </div>
         </nav>
@@ -41,6 +41,7 @@
                             <p class="price">Rp <?php echo number_format($product['price'], 2);?></p>
                             <div class="product-meta"><?php echo htmlspecialchars($product['category']) ?></div>
                         </div>
+                        <a class="nav-link active" href="../views/adminUpdateProduct.php?id=<?php echo $product['id'] ?>" style="margin-right: 30px;">Edit</a>
                         <!-- Remove button form -->
                         <form action="../private/deleteProductProcess.php" method="post" style="display:inline;">
                             <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product['id']); ?>">

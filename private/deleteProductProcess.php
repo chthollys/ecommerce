@@ -20,7 +20,7 @@ mysqli_stmt_bind_param($stmt, 'i', $product_id);
 if (mysqli_stmt_execute($stmt)) {
     mysqli_stmt_close($stmt);
     mysqli_close($conn);
-    header("Location: ../views/deleteProduct.php?message=Product removed successfully");
+    header("Location: ../views/editProduct.php?message=Product removed successfully");
 } else {
     echo "Error deleting product: " . mysqli_error($conn);
 }

@@ -462,6 +462,16 @@ body {
     transition: background-color 0.3s ease;
 }
 
+.edit-item {
+    background: var(--secondary-color);
+    color: var(--white);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
 .remove-item:hover {
     background: #c0392b;
 }
@@ -558,6 +568,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.imageInput-container {
+    display: flex;
 }
 
 /* Responsive adjustments */
