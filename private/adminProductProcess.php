@@ -1,5 +1,6 @@
 <?php
 session_start();
+include "../config/sessionInfo.php";
 
 // Database connection
 include '../config/openConn.php';
@@ -31,12 +32,12 @@ if (isset($_POST['submit'])) {
         // Move the uploaded file to the target directory
         if (move_uploaded_file($file_tmp, $target_dir)) {
             // Insert product into the database with the image path
-            $insert_stmt = mysqli_prepare($conn, "INSERT INTO `products_registry` (name, price, image, stocks, description, category) VALUES (?, ?, ?, ?, ?, ?)");
+            $insert_stmt = mysqli_prepare($conn, "INSERT INTO `products_registry` (name, id_admin, price, image, stocks, description, category) VALUES (?, ?, ?, ?, ?, ?)");
             if (!$insert_stmt) {
                 die("Insert statement preparation failed: " . mysqli_error($conn));
             }
 
-            mysqli_stmt_bind_param($insert_stmt, 'sdsiss', $product_name, $product_price, $target_dir, $product_stocks, $product_description, $product_category);
+            mysqli_stmt_bind_param($insert_stmt, 'sidsiss', $product_name, $user['id'], $product_price, $target_dir, $product_stocks, $product_description, $product_category);
 
             if (mysqli_stmt_execute($insert_stmt)) {
                 $_SESSION['messageA'] = 'Product Registered successfully!';
