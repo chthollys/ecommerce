@@ -9,7 +9,7 @@ if (isset($_POST['submit'])) {
     // Retrieve product information
     $product_name = mysqli_real_escape_string($conn, $_POST['name']);
     $product_price = $_POST['price'];
-    $product_description = mysqli_real_escape_string($conn, $_POST['description']);
+    $product_description = mysqli_real_escape_string($conn, str_replace(["\r\n", "\r"], "<br>", $_POST['description']));
     $product_stocks = mysqli_real_escape_string($conn, $_POST['stocks']);
 
     $category_id = $_POST['category'];

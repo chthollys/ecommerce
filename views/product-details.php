@@ -119,7 +119,9 @@ include '../private/product-detailsProcess.php';
         <!-- Product Description -->
         <div class="product-description">
             <h3>Deskripsi Produk</h3>
-            <p><?php echo nl2br(htmlspecialchars($product['description'])) ?></p>
+            <p>
+                <?php echo $product['description']; ?>
+            </p>
         </div>
     </main>
 

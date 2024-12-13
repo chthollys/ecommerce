@@ -36,56 +36,50 @@ include '../private/categoryRegistry.php';
 
 <div class="container">
     <h1>Admin - Update Product</h1>
-    <?php if (isset($_GET['success']) && $_GET['success'] == 1): ?>
-        <p class="success-message">Product updated successfully!</p>
-    <?php endif; ?>
 
     <!-- Product registration form -->
-    <form action="../private/adminUpdateProductProcess.php" method="POST" enctype="multipart/form-data">
-        <input name="id" type="hidden" value="<?php echo $_GET['id'] ?>">
+    <form action="../private/adminProductUpdateProcess.php" method="POST" enctype="multipart/form-data">
+        <!-- Hidden field to store the product ID -->
+        <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
+
+        <!-- Other product inputs -->
         <label for="name">Product Name:</label>
-        <input type="text" id="name" name="name" value="<?php echo $product['name'] ?>" required>
+        <input type="text" id="name" name="name" value="<?php echo $product['name']; ?>" required>
 
         <label for="price">Price:</label>
-        <div class="input-group">
-            <span class="input-group-addon">Rp</span>
-            <input type="number" id="price" name="price" step="0.01" required value="<?php echo $product['price'] ?>">
-        </div>
+        <input type="number" id="price" name="price" step="0.01" value="<?php echo $product['price']; ?>" required>
 
-        <label for="image">Image (JPEG, PNG):</label>
-        <!-- Display existing image -->
-        <img id="imagePreview" src="<?php echo htmlspecialchars($product['image']); ?>" alt="Current Product Image" style="max-width: 200px; margin-top: 10px;">
-
-        <!-- File input for selecting a new image -->
-        <input type="file" id="image" name="image" accept=".jpg, .jpeg, .png" onchange="previewImage(event)">
-
+        <label for="stocks">Stocks:</label>
+        <input type="number" id="stocks" name="stocks" step="1" value="<?php echo $product['stocks']; ?>" required>
 
         <label for="category">Category:</label>
-        <div class="input-group">
-            <span class="input-group-addon resize"></span>
-            <select id="category" name="category" required>
-                <!-- <option value="" disabled selected>Select Category</option> -->
-                <?php foreach ($registered_categories as $category) :?>
-                    <option value="<?php echo $category['id']; ?>"
-                        <?php if($product['category'] == $category['name']) echo "selected" ?>
-                    >
-                        <?php echo $category['name']; ?>
-                    </option>
-                <?php endforeach;?>
-            </select>
-        </div>
+        <select id="category" name="category" required>
+            <?php foreach ($registered_categories as $category): ?>
+                <option value="<?php echo $category['id']; ?>" 
+                    <?php if ($product['category'] == $category['name']) echo "selected"; ?>>
+                    <?php echo $category['name']; ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
 
-        <label for="price">Stocks:</label>
-        <div class="input-group">
-            <span class="input-group-addon"></span>
-            <input type="number" id="stocks" name="stocks" step="1" required value="<?php echo $product['stocks']; ?>">
-        </div>
+        <label for="image">Current Image:</label>
+        <!-- Show current image -->
+        <img id="currentImagePreview" src="<?php echo htmlspecialchars($product['image']); ?>" alt="Current Product Image" style="max-width: 200px; margin-top: 10px;">
+        <!-- Hidden input to retain the current image path -->
+        <input type="hidden" name="current_image" value="<?php echo htmlspecialchars($product['image']); ?>">
+
+        <label for="image">Replace Image:</label>
+        <!-- File input for replacing the image -->
+        <input type="file" id="replaceImage" name="image" accept=".jpg, .jpeg, .png" onchange="previewReplaceImage(event)">
+        <!-- Preview for the new image -->
+        <img id="replaceImagePreview" alt="New Image Preview" style="display:none; max-width: 200px; margin-top: 10px;">
 
         <label for="description">Description:</label>
-        <textarea id="description" name="description" required cols="60" rows="20"><?php echo $product['description']?></textarea>
-        
-        <button type="submit" name="submit">Add Product</button>
+        <textarea id="description" name="description" cols="60" rows="20" required><?php echo $product['description']; ?></textarea>
+
+        <button type="submit" name="submit">Update Product</button>
     </form>
+
 </div>
 
 <script>
@@ -101,6 +95,25 @@ function previewImage(event) {
         };
 
         reader.readAsDataURL(imageInput.files[0]);
+    }
+}
+
+function previewReplaceImage(event) {
+    const fileInput = event.target; // The file input element
+    const preview = document.getElementById('replaceImagePreview'); // The new image preview element
+
+    if (fileInput.files && fileInput.files[0]) {
+        const reader = new FileReader(); // Create a FileReader instance
+
+        reader.onload = function(e) {
+            preview.src = e.target.result; // Set the preview image's src to the file's data URL
+            preview.style.display = 'block'; // Show the preview image
+        };
+
+        reader.readAsDataURL(fileInput.files[0]); // Read the file as a Data URL
+    } else {
+        preview.style.display = 'none'; // Hide the preview image if no file is selected
+        preview.src = ''; // Clear the preview image's src
     }
 }
 </script>

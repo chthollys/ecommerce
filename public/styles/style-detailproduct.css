@@ -19,6 +19,11 @@ body {
     color: var(--text-color);
 }
 
+p {
+    white-space: pre-wrap; /* Preserve line breaks and wrap text */
+}
+
+
 /* Header & Navigation Styles (dari CSS Anda) */
 .header {
     position: fixed;
