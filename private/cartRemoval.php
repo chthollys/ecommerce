@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-include '../config/openConn.php';
 include '../config/sessionInfo.php';
+include '../config/openConn.php';
 
 if(isset($_POST['submit'])) {
     // Retrieve the product ID from the POST request
