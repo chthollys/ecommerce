@@ -18,6 +18,10 @@ body {
     line-height: 1.6;
     color: var(--text-color);
 }
+a {
+    color: unset;
+    text-decoration: none;
+}
 
 /* Flex Group Styles */
 .flex-group {
