@@ -17,13 +17,15 @@
     <header class="header">
         <nav class="navbar">
             <div class="logo">
+            <a href="../views/home-page.php" style="color: unset; text-decoration: none">
                 <i class="fas fa-shopping-bag"></i>
                 Lokalaku
+            </a>
             </div>
             <div class="nav-links">
-                <a class="nav-link" href="../views/home-page.php">Home</a>
                 <a class="nav-link" href="../views/adminProduct.php">Add Product</a>
                 <a class="nav-link active" href="#" >Edit Product</a>
+                <a class="nav-link" href="../views/manageOrder-page.php">Manage Orders</a>
                 <a href="../views/profile-dashboard.php"><img src="./<?php echo $user['profile_img'] ?? 0 ?>" width="50px" height="50px" style="border-radius: 50% ; object-fit: cover"></a>
             </div>
         </nav>
