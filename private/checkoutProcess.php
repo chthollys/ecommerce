@@ -6,6 +6,7 @@ if (isset($_POST['checkout'])) {
     $user_id = $_SESSION['user_id']; // Assuming the user ID is stored in the session
 
     $payment_method = $_POST['payment'];
+    $address = $_POST['address'];
     // Retrieve items from the cart
     $query = "SELECT * FROM cart WHERE user_id = ? AND status = 1";
     $stmt = mysqli_prepare($conn, $query);
@@ -25,7 +26,7 @@ if (isset($_POST['checkout'])) {
     // Insert items into the orderstatus table
     
     foreach ($cartItems as $item) {
-        $orderStmt = mysqli_prepare($conn, "INSERT INTO order_status (customer_id, product_id, product_name, status, quantity, price, payment_method, image) VALUES (?, ?, ?, 0, ?, ?, ?)");
+        $orderStmt = mysqli_prepare($conn, "INSERT INTO order_status (customer_id, product_id, product_name, status, quantity, price, payment_method, image, seller_id, address) VALUES (?, ?, ?, 0, ?, ?, ?, ?, ?, ?)");
         if (!$orderStmt) {
             echo "Order preparation failed: " . mysqli_error($conn);
         } else {
@@ -33,14 +34,16 @@ if (isset($_POST['checkout'])) {
         }
         mysqli_stmt_bind_param(
             $orderStmt,
-            'iisiiss',
+            'iisiissis',
             $user_id,
             $item['product_id'],
             $item['product_name'],
             $item['quantity'],
             $item['price'],
             $payment_method,
-            $item['image']
+            $item['image'],
+            $item['seller_id'],
+            $address
         );
         mysqli_stmt_execute($orderStmt);
         mysqli_stmt_close($orderStmt);
