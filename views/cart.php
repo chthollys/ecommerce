@@ -88,7 +88,7 @@
 
             <div class="checkout-form">
                 <h3>Checkout Details</h3>
-                <form action="thank-you.php" method="GET">
+                <form action="../private/checkoutProcess.php" method="POST">
                     <div class="form-group">
                         <label for="name">Full Name:</label>
                         <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($user['name'])?>" required>
@@ -105,12 +105,15 @@
                         <label for="payment">Payment Method:</label>
                         <select id="payment" name="payment" required>
                             <option value="">Select payment method</option>
-                            <option value="credit">Credit Card</option>
-                            <option value="debit">Debit Card</option>
-                            <option value="paypal">PayPal</option>
+                            <option value="Credit Card">Credit Card</option>
+                            <option value="Debit Card">Debit Card</option>
+                            <option value="OVO">OVO</option>
+                            <option value="Shopee">Shopee</option>
+                            <option value="GoPay">GoPay</option>
+                            <option value="DANA">DANA</option>
                         </select>
                     </div>
-                    <button type="submit" class="checkout-btn">Place Order</button>
+                    <button type="submit" name="checkout" class="checkout-btn">Place Order</button>
                 </form>
             </div>
         </section>

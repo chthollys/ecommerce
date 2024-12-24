@@ -57,3 +57,5 @@ The application uses MySQL database named `e-commerce_db`
 ## Development
 - **Collaboration Method:** GitHub
 - **Version Control:** Git
+
+http://localhost/project/ecommerce/views/login-page.phps
