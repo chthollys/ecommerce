@@ -5,7 +5,7 @@ include '../config/sessionInfo.php'; // for $user_id info
 // Create connection
 include '../config/openConn.php';
 
-$stmt = mysqli_prepare($conn, "SELECT * FROM order_status WHERE user_id = ?");
+$stmt = mysqli_prepare($conn, "SELECT * FROM order_status WHERE customer_id = ?");
 mysqli_stmt_bind_param($stmt, 'i', $user_id);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);

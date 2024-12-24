@@ -25,7 +25,7 @@ if (isset($_POST['checkout'])) {
     // Insert items into the orderstatus table
     
     foreach ($cartItems as $item) {
-        $orderStmt = mysqli_prepare($conn, "INSERT INTO order_status (customer_id, product_id, product_name, status, quantity, price, payment_method) VALUES (?, ?, ?, 0, ?, ?, ?)");
+        $orderStmt = mysqli_prepare($conn, "INSERT INTO order_status (customer_id, product_id, product_name, status, quantity, price, payment_method, image) VALUES (?, ?, ?, 0, ?, ?, ?)");
         if (!$orderStmt) {
             echo "Order preparation failed: " . mysqli_error($conn);
         } else {
@@ -33,13 +33,14 @@ if (isset($_POST['checkout'])) {
         }
         mysqli_stmt_bind_param(
             $orderStmt,
-            'iisiis',
+            'iisiiss',
             $user_id,
             $item['product_id'],
             $item['product_name'],
             $item['quantity'],
             $item['price'],
-            $payment_method
+            $payment_method,
+            $item['image']
         );
         mysqli_stmt_execute($orderStmt);
         mysqli_stmt_close($orderStmt);

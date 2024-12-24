@@ -36,9 +36,10 @@ include '../private/orderStatusProcess.php';
                 <?php foreach($ordered_products as $product): ?>
                     <div class="order-card">
                         <div class="order-info">
-                            <p><strong>Order ID:</strong> #123456</p>
-                            <p><strong>Product:</strong> Laptop</p>
-                            <p><strong>Ordered on:</strong> 1st December 2024</p>
+                            <img src="<?php echo $product['image']?>" alt="product picture" class="order-image">
+                            <p><strong>Order ID:</strong> #<?php echo $product['id'] ?></p>
+                            <p><strong>Product:</strong> <?php echo $product['product_name'] ?></p>
+                            <p><strong>Ordered on:</strong> <?php echo $product['date'] ?></p>
                         </div>
 
                         <!-- Order Status Progress -->
@@ -50,22 +51,22 @@ include '../private/orderStatusProcess.php';
                             </div>
                             <div class="status">
                                 <div class="status-circle"></div>
-                                <div class="status-icon"><i class="fas fa-cogs"></i></div>
+                                <div class="status-icon"><i class="fas <?php echo ($product['status'] >= 1) ? "fa-check-circle" : "fa-cogs" ?>"></i></div>
                                 <p>Processing</p>
                             </div>
                             <div class="status">
                                 <div class="status-circle"></div>
-                                <div class="status-icon"><i class="fas fa-truck"></i></div>
+                                <div class="status-icon"><i class="fas <?php echo ($product['status'] >= 2) ? "fa-check-circle" : "fa-truck" ?>"></i></div>
                                 <p>Shipped</p>
                             </div>
                             <div class="status">
                                 <div class="status-circle"></div>
-                                <div class="status-icon"><i class="fas fa-box"></i></div>
+                                <div class="status-icon"><i class="fas <?php echo ($product['status'] >= 2) ? "fa-check-circle" : "fa-box" ?>"></i></div>
                                 <p>Delivered</p>
                             </div>
                         </div>
 
-                        <button class="view-order-btn">View Product Details</button>
+                        <a><button class="view-order-btn">View Product Details</button></a>
                     </div>
                 <?php endforeach;?>
             </div>
