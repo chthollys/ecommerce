@@ -32,7 +32,7 @@ include '../private/orderStatusProcess.php';
     <main>
         <section class="order-status-section">
             <div class="order-status-container">
-                <h1>Your Order Status</h1>
+                <h1>Order Status</h1>
                 <?php foreach($ordered_products as $product): ?>
                     <div class="order-card">
                         <div class="order-info">
@@ -50,23 +50,23 @@ include '../private/orderStatusProcess.php';
                                 <p>Order Received</p>
                             </div>
                             <div class="status">
-                                <div class="status-circle"></div>
+                                <div class="status-circle <?php echo ($product['status'] >= 1) ? "active" : "" ?>"></div>
                                 <div class="status-icon"><i class="fas <?php echo ($product['status'] >= 1) ? "fa-check-circle" : "fa-cogs" ?>"></i></div>
                                 <p>Processing</p>
                             </div>
                             <div class="status">
-                                <div class="status-circle"></div>
+                                <div class="status-circle <?php echo ($product['status'] >= 2) ? "active" : "" ?>"></div>
                                 <div class="status-icon"><i class="fas <?php echo ($product['status'] >= 2) ? "fa-check-circle" : "fa-truck" ?>"></i></div>
                                 <p>Shipped</p>
                             </div>
                             <div class="status">
-                                <div class="status-circle"></div>
-                                <div class="status-icon"><i class="fas <?php echo ($product['status'] >= 2) ? "fa-check-circle" : "fa-box" ?>"></i></div>
+                                <div class="status-circle <?php echo ($product['status'] >= 3) ? "active" : "" ?>"></div>
+                                <div class="status-icon"><i class="fas <?php echo ($product['status'] >= 3) ? "fa-check-circle" : "fa-box" ?>"></i></div>
                                 <p>Delivered</p>
                             </div>
                         </div>
 
-                        <a><button class="view-order-btn">View Product Details</button></a>
+                        <a><button class="view-order-btn">View Order Details</button></a>
                     </div>
                 <?php endforeach;?>
             </div>
