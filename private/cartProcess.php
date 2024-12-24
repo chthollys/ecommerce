@@ -9,7 +9,7 @@ $product_id = isset($_POST['product_id']) ? (int)$_POST['product_id'] : 0;
 $quantity = isset($_POST['quantity']) ? (int)$_POST['quantity'] : 1;
 
 // Fetch product details
-$stmt = mysqli_prepare($conn, "SELECT name, price, image FROM products_registry WHERE id = ?");
+$stmt = mysqli_prepare($conn, "SELECT * FROM products_registry WHERE id = ?");
 mysqli_stmt_bind_param($stmt, 'i', $product_id);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
@@ -19,6 +19,7 @@ if ($product) {
     $product_price = $product['price'];
     $product_name = $product['name'];
     $product_image = $product['image'];
+    $seller_id = $product['id_admin'];
     $total_price = $product_price * $quantity;
 
     // Check if product already exists in the cart
@@ -36,8 +37,8 @@ if ($product) {
         mysqli_stmt_execute($stmt_update);
     } else {
         // Product does not exist, insert new row
-        $stmt_insert = mysqli_prepare($conn, "INSERT INTO cart (user_id, product_id, product_name, quantity, price, total_price, image) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        mysqli_stmt_bind_param($stmt_insert, 'iisdids', $user_id, $product_id, $product_name, $quantity, $product_price, $total_price, $product_image);
+        $stmt_insert = mysqli_prepare($conn, "INSERT INTO cart (user_id, seller_id, product_id, product_name, quantity, price, total_price, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        mysqli_stmt_bind_param($stmt_insert, 'iiisdids', $user_id, $seller_id, $product_id, $product_name, $quantity, $product_price, $total_price, $product_image);
         mysqli_stmt_execute($stmt_insert);
     }
 
