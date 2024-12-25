@@ -54,6 +54,11 @@ include '../private/orderDetailProcess.php';
                         ?>
                         </span></p>
                         <p><strong>Description:</strong> <?php echo htmlspecialchars($order['description']);?></p>
+                        <p><strong>Review:</strong></p>
+                        <form action="../private/reviewProcess.php" method="post">
+                            <textarea id="review" name="review" cols="60" rows="20"><?php echo $product['description']; ?></textarea>
+                            <button type="submit" value="Upload Review"></button>
+                        </form>
                     </div>
                 </div>
                 <a href="../views/orderstatus-page.php" class="back-button">Back to Order Status</a>
