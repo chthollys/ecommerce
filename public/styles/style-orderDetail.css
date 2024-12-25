@@ -699,7 +699,6 @@ body {
     margin-bottom: 1rem;
     display: flex;
     justify-content: space-between;
-    align-items: center;
 }
 
 .order-card .order-info {
@@ -1013,7 +1012,6 @@ h1 {
 .order-card {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     margin-top: 2rem;
 }
 

@@ -25,7 +25,7 @@ include '../private/orderDetailProcess.php';
         <div class="nav-links">
             <a href="../views/home-page.php">Home</a>
             <a href="../views/cart.php"><i class="fas fa-shopping-cart"></i> Cart</a>
-            <a href="../views/profile-dashboard.php"><img src="./<?php echo $user['profile_img'] ?>" width="50px" height="50px" style="border-radius: 50% ; object-fit: cover"></a>
+            <a href="../views/profile-dashboard.php"><img src="<?php echo $user['profile_img'] ?>" width="50px" height="50px" style="border-radius: 50% ; object-fit: cover"></a>
         </div>
     </nav>
 </header>
@@ -54,6 +54,22 @@ include '../private/orderDetailProcess.php';
                         ?>
                         </span></p>
                         <p><strong>Description:</strong> <?php echo htmlspecialchars($order['description']);?></p>
+                    <?php if ($order['status'] == 3) :?>
+                        <p><strong>Review:</strong></p>
+                        <form action="../private/reviewProcess.php" method="post">
+                            <input type="hidden" name="order_id" value="<?php echo $_GET['order_id'] ?>">
+                            <input type="hidden" name="product_id" value="<?php echo $order['product_id'] ?>">
+                            <select name="rating" style="margin-bottom: 20px;">
+                            <?php for($i = 0; $i <= 5; $i+= 0.5) :?>
+                                <option value="<?php echo $i ?>" <?php if ($order['review_rating'] == $i) echo "selected" ?>>
+                                    <?php echo $i ?> &#11088
+                                </option>
+                            <?php endfor;?>
+                            </select>    
+                            <textarea id="review" name="review" cols="60" rows="20"><?php echo $order['review_text']; ?></textarea>
+                            <button class="back-button" type="submit" name="submit">Upload Review</button>
+                        </form>
+                    <?php endif;?>
                     </div>
                 </div>
                 <a href="../views/orderstatus-page.php" class="back-button">Back to Order Status</a>

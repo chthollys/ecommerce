@@ -49,6 +49,25 @@ if (isset($_POST['checkout'])) {
         mysqli_stmt_close($orderStmt);
     }
     
+    // Reduce the stock accordingly to the order made
+    foreach ($cartItems as $item) {
+        $updateStmt = mysqli_prepare($conn, "UPDATE products_registry SET stocks = stocks - ?, sold_qty = sold_qty + ? WHERE id = ?");
+        if (!$updateStmt) {
+            echo "Update preparation failed: " . mysqli_error($conn);
+        } else {
+            echo "Update prepared successfully.<br>";
+        }
+        mysqli_stmt_bind_param(
+            $updateStmt,
+            'iii',
+            $item['quantity'],
+            $item['quantity'],
+            $item['product_id']
+        );
+        mysqli_stmt_execute($updateStmt);
+        mysqli_stmt_close($updateStmt);
+    }
+    
 
     // Delete items from the cart
     $deleteQuery = "DELETE FROM cart WHERE user_id = ? AND status = 1";
