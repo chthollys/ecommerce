@@ -1,123 +1,31 @@
+<?php
+include '../private/orderDetailProcess.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Details</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../public/styles/style-orderDetail.css">
+    <link rel="stylesheet" href="../public/styles/stylingDetailPage.css">    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        /* Isolasi CSS untuk halaman order details */
-        .order-details-section {
-            padding: 3rem 1rem;
-            background-color: var(--light-gray);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .order-details-container {
-            max-width: 900px;
-            width: 100%;
-            background: var(--white);
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .order-header {
-            background: var(--secondary-color);
-            color: var(--white);
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .order-header h1 {
-            margin: 0;
-            font-size: 1.8rem;
-        }
-
-        .order-card {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            padding: 2rem;
-            align-items: center;
-        }
-
-        .order-image-wrapper {
-            flex: 1;
-            max-width: 300px;
-        }
-
-        .order-image {
-            width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .order-image:hover {
-            transform: scale(1.05);
-        }
-
-        .order-info {
-            flex: 2;
-            color: var(--text-color);
-        }
-
-        .order-info p {
-            margin-bottom: 1rem;
-        }
-
-        .order-info .status-label {
-            font-weight: bold;
-            color: var(--accent-color);
-            text-transform: capitalize;
-        }
-
-        .back-button {
-            display: inline-block;
-            margin: 2rem auto 0;
-            padding: 0.8rem 1.5rem;
-            background: var(--primary-color);
-            color: var(--white);
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 1rem;
-            text-align: center;
-            transition: background 0.3s ease;
-        }
-
-        .back-button:hover {
-            background: #34495e;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
+    
 </head>
 <!-- Header -->
 <header class="header">
     <nav class="navbar">
         <div class="logo">
-            <i class="fas fa-shopping-bag"></i>
-            Lokalaku
+            <a href="../views/home-page.php" style="color: unset; text-decoration: none">
+                <i class="fas fa-shopping-bag"></i>
+                Lokalaku
+            </a>
         </div>
         <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="products.html">Products</a>
-            <a href="cart.html"><i class="fas fa-shopping-cart"></i> Cart</a>
-            <a href="profile.html">Profile</a>
+            <a href="../views/home-page.php">Home</a>
+            <a href="../views/cart.php"><i class="fas fa-shopping-cart"></i> Cart</a>
+            <a href="../views/profile-dashboard.php"><img src="./<?php echo $user['profile_img'] ?>" width="50px" height="50px" style="border-radius: 50% ; object-fit: cover"></a>
         </div>
     </nav>
 </header>
@@ -128,8 +36,27 @@
                 <div class="order-header">
                     <h1>Order Details</h1>
                 </div>
-                <div id="orderDetails" class="order-card"></div>
-                <a href="orderstatus.html" class="back-button">Back to Order Status</a>
+                <div id="orderDetails" class="order-card">
+                    <div class="order-image-wrapper">
+                        <a href="../views/product-details.php?id=<?php echo $order['product_id']; ?>"><img src="<?php echo $order['image'];?>" alt="<?php echo $order['product_name'];?>" class="order-image"></a>
+                    </div>
+                    <div class="order-info">
+                        <p><strong>Order ID:</strong> #<?php echo $order['id'];?></p>
+                        <p><strong>Product:</strong> <?php echo $order['product_name'];?></p>
+                        <p><strong>Product Category:</strong> <?php echo $order['category'];?></p>
+                        <p><strong>Ordered on:</strong> <?php echo $order['date'];?></p>
+                        <p><strong>Status:</strong> <span class="status-label">
+                        <?php 
+                            if($order['status'] == 0) echo "Order Received";
+                            if($order['status'] == 1) echo "Processing Order";
+                            if($order['status'] == 2) echo "On Delivery";
+                            if($order['status'] == 3) echo "Order Delivered";
+                        ?>
+                        </span></p>
+                        <p><strong>Description:</strong> <?php echo htmlspecialchars($order['description']);?></p>
+                    </div>
+                </div>
+                <a href="../views/orderstatus-page.php" class="back-button">Back to Order Status</a>
             </div>
         </section>
     </main>
@@ -164,7 +91,7 @@
         </div>
     </footer>
 
-    <script>
+    <!-- <script>
         // Ambil parameter dari URL
         const params = new URLSearchParams(window.location.search);
         const orderId = params.get("orderId");
@@ -201,6 +128,6 @@
         } else {
             orderDetailsContainer.innerHTML = "<p>Order not found. Please check the order ID.</p>";
         }
-    </script>
+    </script> -->
 </body>
 </html>

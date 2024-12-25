@@ -3,8 +3,8 @@ include "../config/sessionInfo.php";
 
 // Database connection
 include '../config/openConn.php';
-var_dump($_POST);
-var_dump($_FILES);
+// var_dump($_POST);
+// var_dump($_FILES);
 
 if (isset($_POST['submit'])) {
     $product_id = $_POST['id'];
@@ -12,6 +12,7 @@ if (isset($_POST['submit'])) {
     $product_price = $_POST['price'];
     $product_stocks = mysqli_real_escape_string($conn, $_POST['stocks']);
     $product_description = mysqli_real_escape_string($conn, str_replace(["\r\n", "\r"], "<br>", $_POST['description']));
+    $product_description = stripslashes($product_description);
 
     $category_id = $_POST['category'];
 

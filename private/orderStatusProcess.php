@@ -20,6 +20,7 @@ if ($result && mysqli_num_rows($result) > 0) {
     echo "No products found in your order list.";
 }
 
+
 // Close the statement and connection
 mysqli_stmt_close($stmt);
 include '../config/closeConn.php';

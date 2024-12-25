@@ -66,7 +66,7 @@ include '../private/orderStatusProcess.php';
                             </div>
                         </div>
 
-                        <a><button class="view-order-btn">View Order Details</button></a>
+                        <a href="../views/orderdetails-page.php?order_id=<?php echo $product['id']?>"><button class="view-order-btn">View Order Details</button></a>
                     </div>
                 <?php endforeach;?>
             </div>

@@ -1,14 +1,5 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-// Gateaway information from loginProcess.php
-if (isset($_SESSION['user_id'])) {
-    $user_id = $_SESSION['user_id'];
-} else {
-    header("Location: login-page.php");
-    exit();
-}
+include '../config/sessionInfo.php';
 $product_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
 include '../config/openConn.php';
