@@ -1,6 +1,6 @@
 <?php
 session_start(); // Start the session here
-include 'registerProcess.php'; // Include the registration logic
+include '../private/registerProcess.php'; // Include the registration logic
 ?>
 
 <!DOCTYPE html>

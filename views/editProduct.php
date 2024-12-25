@@ -26,7 +26,7 @@
                 <a class="nav-link" href="../views/adminProduct.php">Add Product</a>
                 <a class="nav-link active" href="#" >Edit Product</a>
                 <a class="nav-link" href="../views/manageOrder-page.php">Manage Orders</a>
-                <a href="../views/profile-dashboard.php"><img src="./<?php echo $user['profile_img'] ?? 0 ?>" width="50px" height="50px" style="border-radius: 50% ; object-fit: cover"></a>
+                <a href="../views/profile-dashboard.php"><img src="<?php echo $user['profile_img'] ?? 0 ?>" width="50px" height="50px" style="border-radius: 50% ; object-fit: cover"></a>
             </div>
         </nav>
     </header>
@@ -41,7 +41,10 @@
                         <div class="item-details">
                             <h3><?php echo htmlspecialchars($product['name']);?></h3>
                             <p class="price">Rp <?php echo number_format($product['price'], 2);?></p>
-                            <div class="product-meta"><?php echo htmlspecialchars($product['category']) ?></div>
+                            <div class="product-meta">
+                                <p><?php echo htmlspecialchars($product['category']) ?></p>
+                                <p>Sold : <?php echo htmlspecialchars($product['sold_qty']) ?></p>
+                            </div>
                         </div>
                         <a class="nav-link active" href="../views/adminUpdateProduct.php?id=<?php echo $product['id'] ?>" style="margin-right: 30px;">Edit</a>
                         <!-- Remove button form -->

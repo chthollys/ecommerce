@@ -31,6 +31,22 @@ if($review_list) {
     }
 }
 
+$query3 ="SELECT COUNT(*) AS review_count, 
+          AVG(rating) AS average_rating,
+          b.sold_qty AS sold_count
+          from reviews AS a JOIN products_registry AS b
+          ON a.product_id = b.id
+          WHERE product_id = ?";
+$stmt3 = mysqli_prepare($conn, $query3);
+
+mysqli_stmt_bind_param($stmt3, 'i', $product_id);
+mysqli_stmt_execute($stmt3);
+$review_stat = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt3));
+ 
+if($review_stat['average_rating'] == NULL) {
+    $review_stat['average_rating'] = 0;
+}
+
 mysqli_stmt_close($stmt);
 mysqli_stmt_close($stmt2);
 include '../config/closeConn.php';

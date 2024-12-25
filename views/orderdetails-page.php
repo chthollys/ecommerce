@@ -25,7 +25,7 @@ include '../private/orderDetailProcess.php';
         <div class="nav-links">
             <a href="../views/home-page.php">Home</a>
             <a href="../views/cart.php"><i class="fas fa-shopping-cart"></i> Cart</a>
-            <a href="../views/profile-dashboard.php"><img src="./<?php echo $user['profile_img'] ?>" width="50px" height="50px" style="border-radius: 50% ; object-fit: cover"></a>
+            <a href="../views/profile-dashboard.php"><img src="<?php echo $user['profile_img'] ?>" width="50px" height="50px" style="border-radius: 50% ; object-fit: cover"></a>
         </div>
     </nav>
 </header>
