@@ -128,11 +128,6 @@ include '../private/product-detailsProcess.php';
                             }
                             if ($review['rating'] % 1 != 0.5) echo '<i class="fas fa-star-half-alt"></i>';
                         ?>
-                        <!-- <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i> -->
                     </div>
                 </div>
                 <div class="review-body">

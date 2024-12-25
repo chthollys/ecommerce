@@ -57,7 +57,8 @@ include '../private/orderDetailProcess.php';
                     <?php if ($order['status'] == 3) :?>
                         <p><strong>Review:</strong></p>
                         <form action="../private/reviewProcess.php" method="post">
-                            <input type="hidden" name="order_id" value="<?php echo $_GET['order_id'] ?? -1 ?>">
+                            <input type="hidden" name="order_id" value="<?php echo $_GET['order_id'] ?>">
+                            <input type="hidden" name="product_id" value="<?php echo $order['product_id'] ?>">
                             <select name="rating" style="margin-bottom: 20px;">
                             <?php for($i = 0; $i <= 5; $i+= 0.5) :?>
                                 <option value="<?php echo $i ?>" <?php if ($order['review_rating'] == $i) echo "selected" ?>>
