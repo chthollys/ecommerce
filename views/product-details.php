@@ -16,7 +16,7 @@ include '../private/product-detailsProcess.php';
     <header class="header">
         <nav class="navbar">
             <div class="logo">
-                <a href="../views/home-page.php"><i class="fas fa-shopping-bag"></i> Lokalaku</a>
+                <a href="../views/home-page.php" style="color: unset; text-decoration: none;" ><i class="fas fa-shopping-bag"></i> Lokalaku</a>
             </div>
             <div class="nav-links">
                 <a href="../views/cart.php"><i class="fas fa-shopping-cart"></i> Cart</a>
@@ -103,16 +103,6 @@ include '../private/product-detailsProcess.php';
                         </button>
                     </form>
                 </div>
-                <!-- Action Buttons 
-                <div class="product-actions">
-                    <button class="add-to-cart">
-                        
-                        Tambah ke Keranjang
-                    </button>
-                    <button class="buy-now">
-                        Beli Sekarang
-                    </button>
-                </div> -->
             </div>
         </div>
 
@@ -123,10 +113,350 @@ include '../private/product-detailsProcess.php';
                 <?php echo $product['description']; ?>
             </p>
         </div>
+
+        <!-- User Reviews Section -->
+        <div class="user-reviews">
+            <h3>Ulasan Pengguna</h3>
+            <div class="review">
+                <div class="review-header">
+                    <span class="user-name">Vingracia</span>
+                    <div class="user-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="review-body">
+                    <img src="image/pd3.png" alt="Reviewed Product" class="review-image">
+                    <p class="review-comment">"Parfumnya sangat wangi dan tahan lama. Saya sangat puas dengan kualitasnya!"</p>
+                </div>
+            </div>
+
+            <div class="review">
+                <div class="review-header">
+                    <span class="user-name">farrel</span>
+                    <div class="user-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+                <div class="review-body">
+                    <img src="image/pd3.png" alt="Reviewed Product" class="review-image">
+                    <p class="review-comment">"Harga sesuai kualitas. Kemasan juga aman sampai tujuan. Rekomen untuk beli!"</p>
+                </div>
+            </div>
+
+            <div class="review">
+                <div class="review-header">
+                    <span class="user-name">asep</span>
+                    <div class="user-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="review-body">
+                    <img src="image/pd3.png" alt="Reviewed Product" class="review-image">
+                    <p class="review-comment">"Produk luar biasa. Saya tidak akan ragu untuk membeli lagi."</p>
+                </div>
+            </div>
+
+            <div class="load-more">
+                <button>Load More Reviews</button>
+            </div>
+        </div>
     </main>
 
     <footer class="footer">
         <!-- Footer content here -->
     </footer>
+
+    <!-- <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const reviews = [
+                {
+                    name: "Eka",
+                    rating: 4.5,
+                    comment: "Produk bagus, pengiriman cepat, dan kualitas memuaskan!",
+                    image: "image/pd3.png",
+                },
+                {
+                    name: "Baoy",
+                    rating: 5,
+                    comment: "Saya suka aroma parfumnya. Sangat menyegarkan.",
+                    image: "image/pd3.png",
+                },
+                {
+                    name: "Hendra",
+                    rating: 4,
+                    comment: "Harganya terjangkau dengan kualitas yang sangat baik!",
+                    image: "image/pd3.png",
+                },
+            ];
+        
+            const reviewContainer = document.querySelector(".user-reviews");
+            const loadMoreBtn = reviewContainer.querySelector(".load-more button");
+        
+            let displayedReviews = 3;
+        
+            function renderReviews() {
+                const reviewsHtml = reviews
+                    .slice(0, displayedReviews)
+                    .map(
+                        (review) => `
+                        <div class="review">
+                            <div class="review-header">
+                                <span class="user-name">${review.name}</span>
+                                <div class="user-rating">
+                                    ${Array(Math.floor(review.rating))
+                                        .fill("<i class='fas fa-star'></i>")
+                                        .join("")}
+                                    ${review.rating % 1 > 0 ? "<i class='fas fa-star-half-alt'></i>" : ""}
+                                </div>
+                            </div>
+                            <div class="review-body">
+                                <img src="${review.image}" alt="Reviewed Product" class="review-image">
+                                <p class="review-comment">"${review.comment}"</p>
+                            </div>
+                        </div>`
+                    )
+                    .join("");
+        
+                reviewContainer.insertAdjacentHTML("beforeend", reviewsHtml);
+            }
+        
+            function loadMoreReviews() {
+                displayedReviews += 3;
+                if (displayedReviews >= reviews.length) {
+                    loadMoreBtn.style.display = "none";
+                }
+                renderReviews();
+            }
+        
+            loadMoreBtn.addEventListener("click", loadMoreReviews);
+        
+            renderReviews();
+        });
+
+        // JavaScript Enhancements
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Highlight selected variant
+    const optionButtons = document.querySelectorAll(".option-btn");
+    optionButtons.forEach((btn) => {
+        btn.addEventListener("click", function () {
+            optionButtons.forEach((b) => b.classList.remove("selected"));
+            btn.classList.add("selected");
+        });
+    });
+
+    // Quantity controls
+    const quantityInput = document.querySelector(".quantity-controls input");
+    const qtyBtns = document.querySelectorAll(".qty-btn");
+    qtyBtns.forEach((btn) => {
+        btn.addEventListener("click", function () {
+            const currentQty = parseInt(quantityInput.value);
+            if (btn.textContent === "-" && currentQty > 1) {
+                quantityInput.value = currentQty - 1;
+            } else if (btn.textContent === "+") {
+                const maxStock = parseInt(quantityInput.getAttribute("max"));
+                if (currentQty < maxStock) {
+                    quantityInput.value = currentQty + 1;
+                }
+            }
+        });
+    });
+
+    // Thumbnail image slider
+    const thumbnails = document.querySelectorAll(".thumbnail-images img");
+    const mainImage = document.querySelector(".main-image img");
+    thumbnails.forEach((thumb) => {
+        thumb.addEventListener("click", function () {
+            mainImage.src = thumb.src;
+        });
+    });
+
+    // Button animations
+    const buttons = document.querySelectorAll("button");
+    buttons.forEach((button) => {
+        button.addEventListener("mouseover", () => {
+            button.style.transform = "scale(1.05)";
+            button.style.transition = "transform 0.3s";
+        });
+
+        button.addEventListener("mouseout", () => {
+            button.style.transform = "scale(1)";
+        });
+
+        button.addEventListener("mousedown", () => {
+            button.style.transform = "scale(0.95)";
+        });
+
+        button.addEventListener("mouseup", () => {
+            button.style.transform = "scale(1)";
+        });
+    });
+
+    // Sticky navbar on scroll
+    const navbar = document.querySelector(".navbar");
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add("sticky");
+        } else {
+            navbar.classList.remove("sticky");
+        }
+    });
+
+    // Discount badge animation
+    const discountBadge = document.querySelector(".discount-badge");
+    if (discountBadge) {
+        setInterval(() => {
+            discountBadge.style.transform = "scale(1.2)";
+            discountBadge.style.transition = "transform 0.3s";
+            setTimeout(() => {
+                discountBadge.style.transform = "scale(1)";
+            }, 300);
+        }, 1000);
+    }
+
+    // Lazy loading reviews
+    const reviews = [
+        // Additional reviews as in the original script
+    ];
+
+    const reviewContainer = document.querySelector(".user-reviews");
+    const loadMoreBtn = reviewContainer.querySelector(".load-more button");
+
+    let displayedReviews = 3;
+
+    function renderReviews() {
+        const reviewsHtml = reviews
+            .slice(0, displayedReviews)
+            .map(
+                (review) => `
+                <div class="review">
+                    <div class="review-header">
+                        <span class="user-name">${review.name}</span>
+                        <div class="user-rating">
+                            ${Array(Math.floor(review.rating))
+                                .fill("<i class='fas fa-star'></i>")
+                                .join("")}
+                            ${review.rating % 1 > 0 ? "<i class='fas fa-star-half-alt'></i>" : ""}
+                        </div>
+                    </div>
+                    <div class="review-body">
+                        <img src="${review.image}" alt="Reviewed Product" class="review-image">
+                        <p class="review-comment">"${review.comment}"</p>
+                    </div>
+                </div>`
+            )
+            .join("");
+
+        reviewContainer.insertAdjacentHTML("beforeend", reviewsHtml);
+    }
+
+    function loadMoreReviews() {
+        displayedReviews += 3;
+        if (displayedReviews >= reviews.length) {
+            loadMoreBtn.style.display = "none";
+        }
+        renderReviews();
+    }
+
+    loadMoreBtn.addEventListener("click", loadMoreReviews);
+
+    renderReviews();
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const reviews = [
+        {
+            name: "Eka",
+            rating: 4.5,
+            comment: "Produk bagus, pengiriman cepat, dan kualitas memuaskan!",
+            image: "image/pd3.png",
+        },
+        {
+            name: "Baoy",
+            rating: 5,
+            comment: "Saya suka aroma parfumnya. Sangat menyegarkan.",
+            image: "image/pd3.png",
+        },
+        {
+            name: "Hendra",
+            rating: 4,
+            comment: "Harganya terjangkau dengan kualitas yang sangat baik!",
+            image: "image/pd3.png",
+        },
+        {
+            name: "Rina",
+            rating: 5,
+            comment: "Parfum ini luar biasa. Saya pasti akan membeli lagi!",
+            image: "image/pd3.png",
+        },
+        {
+            name: "Tommy",
+            rating: 4,
+            comment: "Baunya enak, tapi pengemasan kurang aman.",
+            image: "image/pd3.png",
+        },
+    ];
+
+    const reviewContainer = document.querySelector(".user-reviews");
+    const loadMoreBtn = reviewContainer.querySelector(".load-more button");
+
+    let displayedReviews = 3; // Awal jumlah ulasan yang ditampilkan
+
+    // Fungsi untuk merender ulasan
+    function renderReviews() {
+        const reviewsHtml = reviews
+            .slice(0, displayedReviews)
+            .map(
+                (review) => `
+                    <div class="review">
+                        <div class="review-header">
+                            <span class="user-name">${review.name}</span>
+                            <div class="user-rating">
+                                ${Array(Math.floor(review.rating))
+                                    .fill('<i class="fas fa-star"></i>')
+                                    .join("")}
+                                ${review.rating % 1 > 0 ? '<i class="fas fa-star-half-alt"></i>' : ""}
+                            </div>
+                        </div>
+                        <div class="review-body">
+                            <img src="${review.image}" alt="Reviewed Product" class="review-image">
+                            <p class="review-comment">"${review.comment}"</p>
+                        </div>
+                    </div>`
+            )
+            .join("");
+
+        reviewContainer.querySelectorAll(".review").forEach((r) => r.remove()); // Bersihkan ulasan lama
+        reviewContainer.insertAdjacentHTML("afterbegin", reviewsHtml);
+    }
+
+    // Fungsi untuk memuat lebih banyak ulasan
+    function loadMoreReviews() {
+        displayedReviews += 3; // Tambahkan jumlah ulasan yang ditampilkan
+        if (displayedReviews >= reviews.length) {
+            displayedReviews = reviews.length; // Maksimal jumlah ulasan
+            loadMoreBtn.style.display = "none"; // Sembunyikan tombol jika semua ulasan dimuat
+        }
+        renderReviews();
+    }
+
+    loadMoreBtn.addEventListener("click", loadMoreReviews);
+
+    renderReviews(); // Render ulasan awal
+});
+
+    </script> -->
 </body>
 </html>
