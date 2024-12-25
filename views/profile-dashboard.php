@@ -27,8 +27,9 @@ include '../config/sessionInfo.php';
         </div>
         <div class="nav-links">
             <a class="nav-link" href="../views/cart.php"><i class="fas fa-shopping-cart"></i> Cart</a>
+            <a class="nav-link" href="../views/orderstatus-page.php">Order Status</a>
             <a class="nav-link" href="../private/logoutProcess.php">Log Out</a>
-
+            
             <!-- Display Admin link only if the user is an admin -->
             <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']): ?>
                 <a class="nav-link" href="../views/adminProduct.php" class="active">Admin</a>

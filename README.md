@@ -44,7 +44,9 @@ A full-featured e-commerce platform with user and admin functionalities.
 
 ### Admin Panel
 - `adminProduct.php` - Product management interface
+- `adminUpdateProduct.php` - Product update management interface
 - `adminProductProcess.php` - Product database operations
+- `adminProductUpdateProcess.php` - Product database operations backend 
 - `deleteProduct.php` - Product removal interface
 - `deleteProductProcess.php` - Product deletion handler
 - `productRegistry.php` - Product listing in admin panel
@@ -55,3 +57,5 @@ The application uses MySQL database named `e-commerce_db`
 ## Development
 - **Collaboration Method:** GitHub
 - **Version Control:** Git
+
+http://localhost/project/ecommerce/views/login-page.php

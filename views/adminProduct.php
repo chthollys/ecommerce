@@ -2,7 +2,7 @@
 session_start();
 
 include '../config/sessionInfo.php';
-
+include '../private/categoryRegistry.php';
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +28,8 @@ include '../config/sessionInfo.php';
         </div>
         <div class="nav-links">
             <a class="nav-link active" href="../views/adminProduct.php" >Add Product</a>
-            <a class="nav-link" href="../views/deleteProduct.php">Delete Product</a>
+            <a class="nav-link" href="../views/editProduct.php">Edit Product</a>
+            <a class="nav-link" href="../views/manageOrder-page.php">Manage Orders</a>
             <a href="../views/profile-dashboard.php"><img src="./<?php echo $user['profile_img'] ?>" width="50px" height="50px" style="border-radius: 50% ; object-fit: cover"></a>
         </div>
     </nav>
@@ -50,23 +51,21 @@ include '../config/sessionInfo.php';
             <span class="input-group-addon">Rp</span>
             <input type="number" id="price" name="price" step="0.01" required>
         </div>
-
+        
         <label for="image">Image (JPEG, PNG):</label>
-        <input type="file" id="image" name="image" accept=".jpg, .jpeg, .png" required>
+        <input type="file" id="image" name="image" accept=".jpg, .jpeg, .png" required onchange="previewImage(event)">
+
+        <!-- Image Preview -->
+        <img id="imagePreview" src="" alt="Image Preview" style="display:none; max-width: 200px; margin-top: 10px;">
 
         <label for="category">Category:</label>
         <div class="input-group">
             <span class="input-group-addon resize"></span>
             <select id="category" name="category" required>
                 <option value="" disabled selected>Select Category</option>
-                <option value="Fashion & Apparel">Fashion & Apparel</option>
-                <option value="Electronics & Gadgets">Electronics & Gadgets</option>
-                <option value="Home & Kitchen">Home & Kitchen</option>
-                <option value="Health & Beauty">Health & Beauty</option>
-                <option value="Books, Movies, & Media">Books, Movies, & Media</option>
-                <option value="Sports & Outdoor">Sports & Outdoor</option>
-                <option value="Food & Beverage">Food & Beverage</option>
-                <option value="Games & Hobbies">Games & Hobbies</option>
+                <?php foreach ($registered_categories as $category) :?>
+                    <option value="<?php echo $category['id']; ?>"><?php echo $category['name']; ?></option>
+                <?php endforeach;?>
             </select>
         </div>
 
@@ -82,6 +81,27 @@ include '../config/sessionInfo.php';
         <button type="submit" name="submit">Add Product</button>
     </form>
 </div>
+
+<script>
+function previewImage(event) {
+    const imageInput = event.target;
+    const imagePreview = document.getElementById('imagePreview');
+
+    if (imageInput.files && imageInput.files[0]) {
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            imagePreview.src = e.target.result;
+            imagePreview.style.display = 'block';
+        };
+
+        reader.readAsDataURL(imageInput.files[0]);
+    } else {
+        imagePreview.src = '';
+        imagePreview.style.display = 'none';
+    }
+}
+</script>
 
 </body>
 </html>

@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thank You</title>
     <link rel="stylesheet" href="../public/styles/styleJa.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <header class="header">
@@ -18,15 +19,7 @@
                 </a>
             </div>
             <div class="nav-links">
-                <a href="#featured-products">Products</a>
-                <a href="../views/cart.php"><i class="fas fa-shopping-cart"></i> Cart</a>
-                <a href="../views/profile-dashboard.php">Profile</a>
-                <a href="../private/logoutProcess.php">Log Out</a>
-
-                <!-- Display Admin link only if the user is an admin -->
-                <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']): ?>
-                    <a href="../views/adminProduct.php" class="active">Admin</a>
-                <?php endif; ?>
+                <a href="../views/home-page.php#featured-products" style="color: unset; text-decoration: none" >Products</a>
             </div>
         </nav>
     </header>
