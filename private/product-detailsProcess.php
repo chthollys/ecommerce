@@ -14,7 +14,8 @@ if (!$product) {
     exit();
 }
 
-$query2 ="SELECT a.*, b.profile_img AS profile_img , b.name AS reviewer_name
+$query2 ="SELECT a.*, b.profile_img AS profile_img ,
+          b.name AS reviewer_name
           FROM reviews AS a 
           JOIN user AS b 
           ON a.reviewer_id = b.id
@@ -47,7 +48,25 @@ if($review_stat['average_rating'] == NULL) {
     $review_stat['average_rating'] = 0;
 }
 
+$query4 ="SELECT variation_name, stocks AS variation_stock
+          from product_variations
+          WHERE product_id = ?";
+$stmt4 = mysqli_prepare($conn, $query4);
+
+mysqli_stmt_bind_param($stmt4, 'i', $product_id);
+mysqli_stmt_execute($stmt4);
+$variation_raw = mysqli_stmt_get_result($stmt4);
+$variation_list = [];
+
+if($variation_raw) {
+    while($row = mysqli_fetch_assoc($variation_raw)) {
+        $variation_list[] = $row;
+    }
+}
+
 mysqli_stmt_close($stmt);
 mysqli_stmt_close($stmt2);
+mysqli_stmt_close($stmt3);
+mysqli_stmt_close($stmt4);
 include '../config/closeConn.php';
 ?>

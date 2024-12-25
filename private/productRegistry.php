@@ -5,7 +5,7 @@ include "../config/sessionInfo.php";
 include '../config/openConn.php';
 
 $admin_id = $user['id'];
-$stmt = mysqli_prepare($conn, "SELECT id, name, price, image, category FROM products_registry WHERE id_admin = ?");
+$stmt = mysqli_prepare($conn, "SELECT * FROM products_registry WHERE id_admin = ?");
 mysqli_stmt_bind_param($stmt, "i", $admin_id);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);

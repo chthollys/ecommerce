@@ -10,10 +10,9 @@ if (isset($_POST['submit'])) {
     $product_id = $_POST['id'];
     $product_name = $_POST['name'];
     $product_price = $_POST['price'];
-    $product_stocks = mysqli_real_escape_string($conn, $_POST['stocks']);
     $product_description = mysqli_real_escape_string($conn, str_replace(["\r\n", "\r"], "<br>", $_POST['description']));
     $product_description = stripslashes($product_description);
-
+    $product_stocks = 0;
     $category_id = $_POST['category'];
 
     $extract_category = mysqli_prepare($conn, "SELECT name from categories WHERE id = ?");
@@ -50,6 +49,31 @@ if (isset($_POST['submit'])) {
         $image_path = $_POST['current_image'];
     }
 
+
+    $variation_count = isset($_POST['variation_count']) ? (int)$_POST['variation_count'] : 0;
+    $variation_namelist = isset($_POST['variation_name']) ? $_POST['variation_name'] : [];
+    $variation_stocklist = isset($_POST['variation_stock']) ? $_POST['variation_stock'] : [];
+    if (count($variation_namelist) !== $variation_count || count($variation_stocklist) !== $variation_count) {
+        die('Mismatch between variation count and input data.');
+    }
+    $var_query = "INSERT INTO product_variations (product_id, variation_name, stocks) VALUES (?, ?, ?)";
+    $var_stmt = mysqli_prepare($conn, $var_query);
+    
+    for ($i = 0; $i < $variation_count; $i++) {
+        // Extract each variation's name and stock
+        $variation_name = $variation_namelist[$i];
+        $variation_stocks = (int)$variation_stocklist[$i];
+
+        // Bind parameters and execute the query
+        mysqli_stmt_bind_param($var_stmt, 'isi', $product_id, $variation_name, $variation_stocks);
+        if (!mysqli_stmt_execute($var_stmt)) {
+            echo "Error inserting variation: " . mysqli_error($conn);
+        }
+        $product_stocks += $variation_stocks;
+    }
+    mysqli_stmt_close($var_stmt);
+
+
     // Update the database
     $update_stmt = mysqli_prepare($conn, "UPDATE `products_registry` SET name = ?, price = ?, stocks = ?, description = ?, category = ?, image = ? WHERE id = ?");
     if (!$update_stmt) {
@@ -65,6 +89,7 @@ if (isset($_POST['submit'])) {
     } else {
         die("Update failed: " . mysqli_stmt_error($update_stmt));
     }
+    mysqli_stmt_close($update_stmt);
 }
 
 include '../config/closeConn.php';

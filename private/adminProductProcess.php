@@ -10,8 +10,7 @@ if (isset($_POST['submit'])) {
     $product_name = $_POST['name'];
     $product_price = $_POST['price'];
     $product_description = mysqli_real_escape_string($conn, str_replace(["\r\n", "\r"], "<br>", $_POST['description']));
-    $product_stocks = mysqli_real_escape_string($conn, $_POST['stocks']);
-
+    
     $category_id = $_POST['category'];
     $extract_category = mysqli_prepare($conn, "SELECT name from categories WHERE id = ?");
     mysqli_stmt_bind_param($extract_category, "i", $category_id);
@@ -39,12 +38,12 @@ if (isset($_POST['submit'])) {
         // Move the uploaded file to the target directory
         if (move_uploaded_file($file_tmp, $target_dir)) {
             // Insert product into the database with the image path
-            $insert_stmt = mysqli_prepare($conn, "INSERT INTO `products_registry` (name, id_admin, price, image, stocks, description, category) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            $insert_stmt = mysqli_prepare($conn, "INSERT INTO `products_registry` (name, id_admin, price, image, description, category) VALUES (?, ?, ?, ?, ?, ?)");
             if (!$insert_stmt) {
                 die("Insert statement preparation failed: " . mysqli_error($conn));
             }
 
-            mysqli_stmt_bind_param($insert_stmt, 'sidsiss', $product_name, $user['id'], $product_price, $target_dir, $product_stocks, $product_description, $product_category);
+            mysqli_stmt_bind_param($insert_stmt, 'sidsss', $product_name, $user['id'], $product_price, $target_dir, $product_description, $product_category);
 
             if (mysqli_stmt_execute($insert_stmt)) {
                 $_SESSION['messageA'] = 'Product Registered successfully!';

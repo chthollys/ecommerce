@@ -27,8 +27,8 @@ include '../private/categoryRegistry.php';
             </a>
         </div>
         <div class="nav-links">
-            <a class="nav-link active" href="../views/adminProduct.php" >Add Product</a>
-            <a class="nav-link" href="../views/editProduct.php">Edit Product</a>
+            <a class="nav-link" href="../views/adminProduct.php" >Add Product</a>
+            <a class="nav-link active" href="../views/editProduct.php">Edit Product</a>
             <a href="../views/profile-dashboard.php"><img src="<?php echo $user['profile_img'] ?>" width="50px" height="50px" style="border-radius: 50% ; object-fit: cover"></a>
         </div>
     </nav>
@@ -49,9 +49,6 @@ include '../private/categoryRegistry.php';
         <label for="price">Price:</label>
         <input type="number" id="price" name="price" step="0.01" value="<?php echo $product['price']; ?>" required>
 
-        <label for="stocks">Stocks:</label>
-        <input type="number" id="stocks" name="stocks" step="1" value="<?php echo $product['stocks']; ?>" required>
-
         <label for="category">Category:</label>
         <select id="category" name="category" required>
             <?php foreach ($registered_categories as $category): ?>
@@ -61,6 +58,19 @@ include '../private/categoryRegistry.php';
                 </option>
             <?php endforeach; ?>
         </select>
+        
+        <label for="variation_count">Variation Count:</label>
+        <input id="variation_count" value="1" min="1" name="variation_count" type="number" required> 
+        
+        <div id="variations-container">
+            <label for="name">Variation Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="price">Stocks:</label>
+            <div class="input-group">
+                <span class="input-group-addon"></span>
+                <input type="number" id="stocks" name="stocks" step="1" required>
+            </div>
+        </div>
 
         <label for="image">Current Image:</label>
         <!-- Show current image -->
@@ -116,6 +126,61 @@ function previewReplaceImage(event) {
         preview.src = ''; // Clear the preview image's src
     }
 }
+
+const variationCountInput = document.getElementById('variation_count');
+const variationsContainer = document.getElementById('variations-container');
+
+function updateVariations() {
+        // Get the current variation count value
+        const count = parseInt(variationCountInput.value, 10) || 1;
+
+        // Clear existing variations
+        variationsContainer.innerHTML = '';
+
+        // Generate the required number of variations
+        for (let i = 1; i <= count; i++) {
+            // Create a variation item div
+            const variationItem = document.createElement('div');
+            variationItem.className = 'variation-item';
+
+            // Create and append the variation name label and input
+            const nameLabel = document.createElement('label');
+            nameLabel.setAttribute('for', `variation_name-${i}`);
+            nameLabel.textContent = `Variation Name-${i}:`;
+            variationItem.appendChild(nameLabel);
+
+            const nameInput = document.createElement('input');
+            nameInput.type = 'text';
+            nameInput.id = `variation_name-${i}`;
+            nameInput.name = 'variation_name[]';
+            nameInput.required = true;
+            variationItem.appendChild(nameInput);
+
+            // Create and append the stocks label and input
+            const stocksLabel = document.createElement('label');
+            stocksLabel.setAttribute('for', `variation_stock-${i}`);
+            stocksLabel.textContent = `Stocks-${i}:`;
+            variationItem.appendChild(stocksLabel);
+
+            const stocksInput = document.createElement('input');
+            stocksInput.type = 'number';
+            stocksInput.id = `variation_stock-${i}`;
+            stocksInput.name = 'variation_stock[]';
+            stocksInput.step = '1';
+            stocksInput.required = true;
+            stocksInput.min = 1;
+            variationItem.appendChild(stocksInput);
+
+            // Append the variation item to the container
+            variationsContainer.appendChild(variationItem);
+        }
+    }
+
+    // Add an event listener to track changes in the variation count input
+    variationCountInput.addEventListener('input', updateVariations);
+
+    // Initialize with default value
+    updateVariations();
 </script>
 
 </body>
