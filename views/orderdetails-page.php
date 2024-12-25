@@ -54,11 +54,21 @@ include '../private/orderDetailProcess.php';
                         ?>
                         </span></p>
                         <p><strong>Description:</strong> <?php echo htmlspecialchars($order['description']);?></p>
+                    <?php if ($order['status'] == 3) :?>
                         <p><strong>Review:</strong></p>
                         <form action="../private/reviewProcess.php" method="post">
-                            <textarea id="review" name="review" cols="60" rows="20"><?php echo $product['description']; ?></textarea>
-                            <button type="submit" value="Upload Review"></button>
+                            <input type="hidden" name="order_id" value="<?php echo $_GET['order_id'] ?? -1 ?>">
+                            <select name="rating" style="margin-bottom: 20px;">
+                            <?php for($i = 0; $i <= 5; $i+= 0.5) :?>
+                                <option value="<?php echo $i ?>" <?php if ($order['review_rating'] == $i) echo "selected" ?>>
+                                    <?php echo $i ?> &#11088
+                                </option>
+                            <?php endfor;?>
+                            </select>    
+                            <textarea id="review" name="review" cols="60" rows="20"><?php echo $order['review_text']; ?></textarea>
+                            <button class="back-button" type="submit" name="submit">Upload Review</button>
                         </form>
+                    <?php endif;?>
                     </div>
                 </div>
                 <a href="../views/orderstatus-page.php" class="back-button">Back to Order Status</a>
