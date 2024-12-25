@@ -20,7 +20,7 @@ include '../private/product-detailsProcess.php';
             </div>
             <div class="nav-links">
                 <a href="../views/cart.php"><i class="fas fa-shopping-cart"></i> Cart</a>
-                <a href="../views/profile-dashboard.php"><img src="./<?php echo htmlspecialchars($user['profile_img'] ?? 0) ?>" width="50px" height="50px" style="border-radius: 50% ; object-fit: cover"></a>            </div>
+                <a href="../views/profile-dashboard.php"><img src="<?php echo htmlspecialchars($user['profile_img'] ?? 0) ?>" width="50px" height="50px" style="border-radius: 50% ; object-fit: cover"></a>            </div>
         </nav>
     </header>
     
@@ -44,14 +44,20 @@ include '../private/product-detailsProcess.php';
                 <h1 class="product-title"><?php echo htmlspecialchars($product['name']) ?></h1>
                 <div class="product-meta">
                     <div class="product-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                        <span>(150 ulasan)</span>
+                    <?php
+                        for ($i = 0; $i < $review_stat['average_rating']; $i++) {
+                            if ($review_stat['average_rating'] - $i == 0.5) {
+                                echo '<i class="fas fa-star-half-alt"></i>';
+                            } else if ($review_stat['average_rating'] - $i > 0.5) {
+                                echo '<i class="fas fa-star"></i>';
+                            } else {
+                                echo '';
+                            }
+                        }
+                    ?>
+                        <span>(<?php echo htmlspecialchars($review_stat['review_count'])?> ulasan)</span>
                     </div>
-                    <div class="product-sold">Terjual 500+</div>
+                    <div class="product-sold">Terjual <?php echo htmlspecialchars($review_stat['sold_count'])?></div>
                     <div class="product-sold"><?php echo htmlspecialchars($product['category']) ?></div>
                 </div>
 

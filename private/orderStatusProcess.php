@@ -16,8 +16,6 @@ if ($result && mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
         $ordered_products[] = $row;
     }
-} else {
-    echo "No products found in your order list.";
 }
 
 
