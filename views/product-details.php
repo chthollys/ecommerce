@@ -64,15 +64,15 @@ include '../private/product-detailsProcess.php';
                 <div class="product-price">
                     <span class="price">Rp<?php echo number_format($product['price'], 2)?></span>
                 </div>
-
+                
                 Product Options
                 <div class="product-options">
                     <div class="option-group">
                         <h3>Pilih Varian</h3>
                         <div class="option-buttons">
-                            <button class="option-btn">Hitam</button>
-                            <button class="option-btn">Putih</button>
-                            <button class="option-btn">Merah</button>
+                        <?php foreach ($variation_list as $varian) :?>
+                            <button class="option-btn"><?php echo $varian['variation_name'] ?></button>
+                        <?php endforeach;?>
                         </div>
                     </div>
 
