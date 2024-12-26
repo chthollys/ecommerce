@@ -151,6 +151,7 @@ function updateVariations() {
 
             const nameInput = document.createElement('input');
             nameInput.type = 'text';
+            nameInput.value = 'Normal';
             nameInput.id = `variation_name-${i}`;
             nameInput.name = 'variation_name[]';
             nameInput.required = true;

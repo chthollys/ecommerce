@@ -58,6 +58,7 @@ include '../private/orderDetailProcess.php';
                         <p><strong>Review:</strong></p>
                         <form action="../private/reviewProcess.php" method="post">
                             <input type="hidden" name="order_id" value="<?php echo $_GET['order_id'] ?>">
+                            <input type="hidden" name="variation_id" value="<?php echo $order['variation_id'] ?>">
                             <input type="hidden" name="product_id" value="<?php echo $order['product_id'] ?>">
                             <select name="rating" style="margin-bottom: 20px;">
                             <?php for($i = 0; $i <= 5; $i+= 0.5) :?>
