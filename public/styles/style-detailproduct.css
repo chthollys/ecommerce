@@ -285,6 +285,13 @@ body {
 }
 
 /* Description Section */
+.seller-bio {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+    gap: 30px;
+}
+
 .product-description {
     margin-top: 40px;
     background: var(--white);
@@ -510,10 +517,26 @@ body {
 .user-rating i {
     color: #ffc400;
 }
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+}
+
 .review-body {
     display: flex;
     gap: 12px;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: space-between;
 }
 .review-image {
     width: 60px;
@@ -573,7 +596,7 @@ body {
 
 .review-body {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 12px;
 }
 

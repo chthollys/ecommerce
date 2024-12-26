@@ -45,6 +45,7 @@
                         <form action="../private/cartInclude.php" method="post">
                             <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id'] ?>">
                             <input type="hidden" name="product_id" value="<?php echo $product['product_id'] ?>" >
+                            <input type="hidden" name="variation_id" value="<?php echo $product['variation_id'] ?>" >
                             <input type="hidden" name="status" value="0" >
                             <input type="checkbox" class="checkbox-product" name="status" value="1"
                             <?php if ($product['status'] == 1) echo "checked"; ?>

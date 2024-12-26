@@ -17,9 +17,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     // echo "</pre>";
     $user_id = $_POST['user_id'];
     $product_id = $_POST['product_id'];
-
-    $stmt = mysqli_prepare($conn, "UPDATE cart SET status = ? WHERE user_id = ? AND product_id = ? ");
-    mysqli_stmt_bind_param($stmt, 'iii', $status, $user_id, $product_id);
+    $variation_id = $_POST['variation_id'];
+    
+    $stmt = mysqli_prepare($conn, "UPDATE cart SET status = ? WHERE user_id = ? AND product_id = ? AND variation_id = ? ");
+    mysqli_stmt_bind_param($stmt, 'iiii', $status, $user_id, $product_id, $variation_id);
     if ($stmt->execute()) {
         echo "Status updated successfully.";
         header('Location: ../views/cart.php');

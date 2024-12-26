@@ -53,7 +53,6 @@ include '../private/orderDetailProcess.php';
                             if($order['status'] == 3) echo "Order Delivered";
                         ?>
                         </span></p>
-                        <p><strong>Description:</strong> <?php echo htmlspecialchars($order['description']);?></p>
                     <?php if ($order['status'] == 3) :?>
                         <p><strong>Review:</strong></p>
                         <form action="../private/reviewProcess.php" method="post">

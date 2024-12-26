@@ -4,7 +4,11 @@ $product_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
 include '../config/openConn.php';
 // Fetch the product details from the database
-$stmt = mysqli_prepare($conn, "SELECT name, price, image, stocks, description, category FROM products_registry WHERE id = ?");
+$stmt = mysqli_prepare($conn, "SELECT a.*, b.name AS seller_name, b.profile_img AS seller_img
+                               FROM products_registry AS a
+                               JOIN user AS b
+                               ON a.id_admin = b.id
+                               WHERE a.id = ?");
 mysqli_stmt_bind_param($stmt, 'i', $product_id);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
@@ -15,10 +19,12 @@ if (!$product) {
 }
 
 $query2 ="SELECT a.*, b.profile_img AS profile_img ,
-          b.name AS reviewer_name
+          b.name AS reviewer_name, c.variation_name AS variation_name
           FROM reviews AS a 
           JOIN user AS b 
           ON a.reviewer_id = b.id
+          JOIN product_variations AS c
+          ON a.variation_id = c.variation_id
           WHERE a.product_id = ?
           ORDER BY a.review_date DESC";
 $stmt2 = mysqli_prepare($conn, $query2);
