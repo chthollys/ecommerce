@@ -1,61 +1,80 @@
-# E-Commerce Website Documentation
+# E-Commerce Platform Documentation
 
 ## Project Overview
-A full-featured e-commerce platform with user and admin functionalities.
+This project is a full-featured e-commerce platform named **Lokalaku**. It includes functionalities for both users and administrators, allowing for product management, order processing, and user account management.
 
 ## Tech Stack
 - **Backend:** PHP
 - **Database:** MySQL (e-commerce_db)
 - **Frontend:** HTML, CSS, JavaScript
 
-## Color Theme
-<img src="./public/styles/color-themes.png" alt="Color Theme Palette" width="500"/>
+## Directory Structure
 
-| Color | Hex | RGB |
-|-------|-----|-----|
-| Primary Dark Grey Blue | #2C3E50 | rgb(44,62,80) |
-| Primary Light Blue | #3498DB | rgb(52,152,219) |
-| Bright red | #E74C3C | rgb(231, 76, 60) |
-| White | #FFFFFF | rgb(255, 255, 255) |
+### Views
+- **Admin Panel**
+  - `adminProduct.php`: Interface for adding new products.
+  - `adminUpdateProduct.php`: Interface for updating existing products.
+  - `editProduct.php`: Interface for editing product details.
+  - `manageOrder-page.php`: Interface for managing orders.
+  
+- **User Interface**
+  - `cart.php`: Shopping cart interface.
+  - `home-page.php`: Main landing page for users.
+  - `login-page.php`: User login interface.
+  - `register-page.php`: User registration interface.
+  - `profile-dashboard.php`: User profile management.
+  - `orderstatus-page.php`: View order status.
+  - `orderdetails-page.php`: View detailed order information.
+  - `product-details.php`: View detailed product information.
+  - `thank-you.php`: Post-checkout success page.
 
-## File Structure
+### Private
+- **Admin Processes**
+  - `adminProductProcess.php`: Handles product addition.
+  - `adminProductUpdateProcess.php`: Handles product updates.
+  - `deleteProductProcess.php`: Handles product deletion.
 
-### Authentication
-- `login-page.php` - User/admin login interface
-- `loginProcess.php` - Email and password verification
-- `register-page.php` - New account registration interface
-- `registerProcess.php` - Account creation handler
-- `logoutProcess.php` - Session termination handler
+- **Cart Processes**
+  - `cartProcess.php`: Handles adding items to the cart.
+  - `cartRegistry.php`: Retrieves cart items.
+  - `cartRemoval.php`: Handles removal of items from the cart.
+  - `cartInclude.php`: Updates cart status.
 
-### User Interface
-- `home-page.php` - Main product listing page
-- `homeProcess.php` - Product loading handler
-- `product-details.php` - Individual product view
-- `profile-dashboard.php` - User/admin profile management
-- `profileProcess.php` - Profile data handler
+- **Order Processes**
+  - `checkoutProcess.php`: Handles order checkout.
+  - `editOrderProcess.php`: Handles order status updates.
+  - `manageOrderProcess.php`: Retrieves order information.
+  - `orderDetailProcess.php`: Retrieves detailed order information.
+  - `orderStatusProcess.php`: Retrieves order status.
 
-### Shopping Cart
-- `cart.php` - Shopping cart interface
-- `cartProcess.php` - Cart item addition handler
-- `cartRegistry.php` - Cart items display handler
-- `cartRemoval.php` - Cart item deletion handler
-- `cartInclude.php` - Checkout logic handler
-- `thank-you.php` - Post-checkout success page
+- **User Processes**
+  - `loginProcess.php`: Handles user login.
+  - `registerProcess.php`: Handles user registration.
+  - `profileProcess.php`: Handles profile updates.
+  - `reviewProcess.php`: Handles product reviews.
 
-### Admin Panel
-- `adminProduct.php` - Product management interface
-- `adminUpdateProduct.php` - Product update management interface
-- `adminProductProcess.php` - Product database operations
-- `adminProductUpdateProcess.php` - Product database operations backend 
-- `deleteProduct.php` - Product removal interface
-- `deleteProductProcess.php` - Product deletion handler
-- `productRegistry.php` - Product listing in admin panel
+- **Category Management**
+  - `categoryRegistry.php`: Retrieves product categories.
 
-## Database
-The application uses MySQL database named `e-commerce_db`
+### Config
+- `openConn.php`: Establishes database connection.
+- `closeConn.php`: Closes database connection.
+- `sessionInfo.php`: Manages session information.
+
+### Database
+- `e-commerce_db.sql`: SQL dump for database structure and initial data.
 
 ## Development
 - **Collaboration Method:** GitHub
 - **Version Control:** Git
 
-http://localhost/project/ecommerce/views/login-page.php
+## Usage
+1. **Setup Database:** Import `e-commerce_db.sql` into your MySQL server.
+2. **Configure Database Connection:** Update `openConn.php` with your database credentials.
+3. **Run the Application:** Access the application through your local server (e.g., `http://localhost/project/ecommerce/views/home-page.php`).
+
+## License
+This project is licensed under the MIT License.
+
+## Contact
+For any inquiries or issues, please contact the project maintainer.
