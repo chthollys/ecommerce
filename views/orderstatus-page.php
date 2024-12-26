@@ -36,9 +36,10 @@ include '../private/orderStatusProcess.php';
                 <?php foreach($ordered_products as $product): ?>
                     <div class="order-card">
                         <div class="order-info">
-                            <img src="<?php echo $product['image']?>" alt="product picture" class="order-image">
+                            <a href="../views/product-details.php?id=<?php echo $product['product_id'] ?>"><img src="<?php echo $product['image']?>" alt="product picture" class="order-image"></a>
                             <p><strong>Order ID:</strong> #<?php echo $product['id'] ?></p>
                             <p><strong>Product:</strong> <?php echo $product['product_name'] ?></p>
+                            <p><strong>Varian:</strong> <?php echo $product['variation_name'] ?></p>
                             <p><strong>Ordered on:</strong> <?php echo $product['date'] ?></p>
                         </div>
 

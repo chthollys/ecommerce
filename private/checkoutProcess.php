@@ -26,7 +26,7 @@ if (isset($_POST['checkout'])) {
     // Insert items into the orderstatus table
     
     foreach ($cartItems as $item) {
-        $orderStmt = mysqli_prepare($conn, "INSERT INTO order_status (customer_id, product_id, product_name, status, quantity, price, payment_method, image, seller_id, address) VALUES (?, ?, ?, 0, ?, ?, ?, ?, ?, ?)");
+        $orderStmt = mysqli_prepare($conn, "INSERT INTO order_status (customer_id, product_id, product_name, status, quantity, price, payment_method, image, seller_id, address, variation_id) VALUES (?, ?, ?, 0, ?, ?, ?, ?, ?, ?, ?)");
         if (!$orderStmt) {
             echo "Order preparation failed: " . mysqli_error($conn);
         } else {
@@ -34,7 +34,7 @@ if (isset($_POST['checkout'])) {
         }
         mysqli_stmt_bind_param(
             $orderStmt,
-            'iisiissis',
+            'iisiissisi',
             $user_id,
             $item['product_id'],
             $item['product_name'],
@@ -43,7 +43,8 @@ if (isset($_POST['checkout'])) {
             $payment_method,
             $item['image'],
             $item['seller_id'],
-            $address
+            $address,
+            $item['variation_id']
         );
         mysqli_stmt_execute($orderStmt);
         mysqli_stmt_close($orderStmt);
@@ -66,6 +67,21 @@ if (isset($_POST['checkout'])) {
         );
         mysqli_stmt_execute($updateStmt);
         mysqli_stmt_close($updateStmt);
+
+        $updateStmt2 = mysqli_prepare($conn, "UPDATE product_variations SET stocks = stocks - ? WHERE variation_id = ?");
+        if (!$updateStmt2) {
+            echo "Update preparation failed: " . mysqli_error($conn);
+        } else {
+            echo "Update prepared successfully.<br>";
+        }
+        mysqli_stmt_bind_param(
+            $updateStmt2,
+            'ii',
+            $item['quantity'],
+            $item['variation_id']
+        );
+        mysqli_stmt_execute($updateStmt2);
+        mysqli_stmt_close($updateStmt2);
     }
     
 

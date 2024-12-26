@@ -55,6 +55,7 @@
                         <div class="item-details">
                             <h3><?php echo htmlspecialchars($product['product_name']);?></h3>
                             <p class="price">Rp <?php echo number_format($product['price'], 2);?></p>
+                            <p class="price">Varian: <?php echo $product['variation_name'] ;?></p>
                             <div class="quantity">
                                 <label for="quantity">Quantity:</label>
                                 <input readonly type="number" id="quantity" value="<?php echo htmlspecialchars($product['quantity'])?>">

@@ -28,6 +28,7 @@
         <section class="thank-you">
             <h2>Thank You for Your Order!</h2>
             <p>We appreciate your business and hope you enjoy your purchase.</p>
+            <a href="../views/home-page.php">Back to HomePage</a>
         </section>
     </main>
 
