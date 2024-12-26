@@ -96,59 +96,6 @@ function previewImage(event) {
     }
 }
 
-const variationCountInput = document.getElementById('variation_count');
-const variationsContainer = document.getElementById('variations-container');
-
-function updateVariations() {
-        // Get the current variation count value
-        const count = parseInt(variationCountInput.value, 10) || 1;
-
-        // Clear existing variations
-        variationsContainer.innerHTML = '';
-
-        // Generate the required number of variations
-        for (let i = 1; i <= count; i++) {
-            // Create a variation item div
-            const variationItem = document.createElement('div');
-            variationItem.className = 'variation-item';
-
-            // Create and append the variation name label and input
-            const nameLabel = document.createElement('label');
-            nameLabel.setAttribute('for', `variation_name-${i}`);
-            nameLabel.textContent = `Variation Name-${i}:`;
-            variationItem.appendChild(nameLabel);
-
-            const nameInput = document.createElement('input');
-            nameInput.type = 'text';
-            nameInput.id = `variation_name-${i}`;
-            nameInput.name = 'variation_name[]';
-            nameInput.required = true;
-            variationItem.appendChild(nameInput);
-
-            // Create and append the stocks label and input
-            const stocksLabel = document.createElement('label');
-            stocksLabel.setAttribute('for', `variation_stock-${i}`);
-            stocksLabel.textContent = `Stocks-${i}:`;
-            variationItem.appendChild(stocksLabel);
-
-            const stocksInput = document.createElement('input');
-            stocksInput.type = 'number';
-            stocksInput.id = `variation_stock-${i}`;
-            stocksInput.name = 'variation_stock[]';
-            stocksInput.step = '1';
-            stocksInput.required = true;
-            variationItem.appendChild(stocksInput);
-
-            // Append the variation item to the container
-            variationsContainer.appendChild(variationItem);
-        }
-    }
-
-    // Add an event listener to track changes in the variation count input
-    variationCountInput.addEventListener('input', updateVariations);
-
-    // Initialize with default value
-    updateVariations();
 </script>
 
 </body>

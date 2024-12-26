@@ -5,7 +5,14 @@ include '../config/sessionInfo.php'; // for $user_id info
 // Create connection
 include '../config/openConn.php';
 
-$stmt = mysqli_prepare($conn, "SELECT a.* , b.name AS customer_name FROM order_status AS a JOIN user AS b ON a.customer_id = b.id WHERE seller_id = ? ");
+$stmt = mysqli_prepare($conn, "SELECT a.* , b.name AS customer_name, c.variation_name
+                               FROM order_status AS a
+                               JOIN user AS b
+                               ON a.customer_id = b.id
+                               JOIN product_variations AS c
+                               ON a.variation_id = c.variation_id
+                               WHERE seller_id = ? 
+                               ORDER BY date DESC");
 mysqli_stmt_bind_param($stmt, 'i', $user_id);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);

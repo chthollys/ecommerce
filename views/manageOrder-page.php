@@ -41,6 +41,7 @@ include '../private/manageOrderProcess.php';
                             <img src="<?php echo $product['image']?>" alt="product picture" class="order-image">
                             <p><strong>Order ID:</strong> #<?php echo $product['id'] ?></p>
                             <p><strong>Product:</strong> <?php echo $product['product_name'] ?></p>
+                            <p><strong>Varian:</strong> <?php echo $product['variation_name'] ?></p>
                             <p><strong>Ordered on:</strong> <?php echo $product['date'] ?></p>
                             <p><strong>Ordered by:</strong> <?php echo $product['customer_name'] ?></p>
                         </div>

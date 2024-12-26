@@ -45,14 +45,14 @@ include '../private/product-detailsProcess.php';
                 <div class="product-meta">
                     <div class="product-rating">
                     <?php
-                        for ($i = 0; $i < $review_stat['average_rating']; $i++) {
-                            if ($review_stat['average_rating'] - $i == 0.5) {
-                                echo '<i class="fas fa-star-half-alt"></i>';
-                            } else if ($review_stat['average_rating'] - $i > 0.5) {
+                        $rating_countAV = 0;
+                        while ($rating_countAV < $review_stat['average_rating']) {
+                            if ($review_stat['average_rating'] - $rating_countAV >= 1) {
                                 echo '<i class="fas fa-star"></i>';
                             } else {
-                                echo '';
+                                echo '<i class="fas fa-star-half-alt"></i>';
                             }
+                            $rating_countAV += 1;
                         }
                     ?>
                         <span>(<?php echo htmlspecialchars($review_stat['review_count'])?> ulasan)</span>
@@ -71,7 +71,7 @@ include '../private/product-detailsProcess.php';
                         <h3>Pilih Varian</h3>
                         <div class="option-buttons">
                         <?php foreach ($variation_list as $varian) :?>
-                            <button class="option-btn"><?php echo $varian['variation_name'] ?></button>
+                            <button class="option-btn"><?php echo $varian['variation_name'] ?> (<?php echo $varian['variation_stock'] ?>)</button>
                         <?php endforeach;?>
                         </div>
                     </div>
@@ -88,20 +88,25 @@ include '../private/product-detailsProcess.php';
                     <div class="add-message" id="div-message">
                         Product successfully added to the cart!
                     </div>
-                    <script>
-                        setTimeout(() => {
-                            document.getElementById('div-message').style.display = 'none';
-                        }, 2000);
-                    </script>
                 <?php endif; ?>
 
                 <div class="product-actions">
                     <form action="../private/cartProcess.php" method="post" class="product-actions">
                         <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
-                        <input type="hidden" name="action" value="add_to_cart">
                         <div class="qty-container">
                             <label for="quantity">Quantity:</label>
                             <input type="number" id="quantity" name="quantity" value="1" min="1" max="<?php echo $product['stocks'] ?>">
+                        </div>
+                        <div class="qty-container">
+                            <label for="varian">Varian:</label>
+                            <select id="variation_id" name="variation_id" required>
+                                <option value="" disabled selected>Select an option</option>
+                            <?php foreach ($variation_list as $varian) :?>
+                                <?php if ($varian['variation_stock'] >= 1) : ?>
+                                <option value="<?php echo $varian['variation_id'] ?>" data-stock="<?php echo $varian['variation_stock']; ?>"><?php echo $varian['variation_name'] ?></option>
+                                <?php endif; ?>
+                            <?php endforeach;?>
+                            </select>
                         </div>
                             <button type="submit" class="add-to-cart" name="add_to_cart">
                             <i class="fas fa-shopping-cart"></i>
@@ -129,18 +134,23 @@ include '../private/product-detailsProcess.php';
                     <span class="user-name"><?php echo $review['reviewer_name']?></span>
                     <div class="user-rating">
                         <?php
-                            for ($i = 0.5; $i < $review['rating']; $i++) {
-                                echo '<i class="fas fa-star"></i>';
+                            $rating_count = 0;
+                            while ($rating_count < $review['rating']) {
+                                if ($review['rating'] - $rating_count >= 1) {
+                                    echo '<i class="fas fa-star"></i>';
+                                } else {
+                                    echo '<i class="fas fa-star-half-alt"></i>';
+                                }
+                                $rating_count += 1;
                             }
-                            if ($review['rating'] % 1 != 0.5) echo '<i class="fas fa-star-half-alt"></i>';
                         ?>
+                        <p class="review-comment"><?php echo $review['review_date']?></p>
                     </div>
                 </div>
                 <div class="review-body">
                     <img src="<?php echo $review['profile_img']?>" alt="Reviewer Profile Pict" class="review-image">
-                    <p class="review-comment">"<?php echo $review['text']?>"</p>
+                    <p class="review-comment">"<?php echo $review['text']?>"</p>                </div>
                 </div>
-            </div>
             <?php endforeach;?>
             
             <div class="load-more">
@@ -153,285 +163,27 @@ include '../private/product-detailsProcess.php';
         <!-- Footer content here -->
     </footer>
 
-    <!-- <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const reviews = [
-                {
-                    name: "Eka",
-                    rating: 4.5,
-                    comment: "Produk bagus, pengiriman cepat, dan kualitas memuaskan!",
-                    image: "image/pd3.png",
-                },
-                {
-                    name: "Baoy",
-                    rating: 5,
-                    comment: "Saya suka aroma parfumnya. Sangat menyegarkan.",
-                    image: "image/pd3.png",
-                },
-                {
-                    name: "Hendra",
-                    rating: 4,
-                    comment: "Harganya terjangkau dengan kualitas yang sangat baik!",
-                    image: "image/pd3.png",
-                },
-            ];
-        
-            const reviewContainer = document.querySelector(".user-reviews");
-            const loadMoreBtn = reviewContainer.querySelector(".load-more button");
-        
-            let displayedReviews = 3;
-        
-            function renderReviews() {
-                const reviewsHtml = reviews
-                    .slice(0, displayedReviews)
-                    .map(
-                        (review) => `
-                        <div class="review">
-                            <div class="review-header">
-                                <span class="user-name">${review.name}</span>
-                                <div class="user-rating">
-                                    ${Array(Math.floor(review.rating))
-                                        .fill("<i class='fas fa-star'></i>")
-                                        .join("")}
-                                    ${review.rating % 1 > 0 ? "<i class='fas fa-star-half-alt'></i>" : ""}
-                                </div>
-                            </div>
-                            <div class="review-body">
-                                <img src="${review.image}" alt="Reviewed Product" class="review-image">
-                                <p class="review-comment">"${review.comment}"</p>
-                            </div>
-                        </div>`
-                    )
-                    .join("");
-        
-                reviewContainer.insertAdjacentHTML("beforeend", reviewsHtml);
-            }
-        
-            function loadMoreReviews() {
-                displayedReviews += 3;
-                if (displayedReviews >= reviews.length) {
-                    loadMoreBtn.style.display = "none";
-                }
-                renderReviews();
-            }
-        
-            loadMoreBtn.addEventListener("click", loadMoreReviews);
-        
-            renderReviews();
-        });
+    <script>
+        setTimeout(() => {
+            document.getElementById('div-message').style.display = 'none';
+        }, 2000);
+        document.addEventListener('DOMContentLoaded', () => {
+            const variationSelect = document.getElementById('variation_id');
+            const quantityInput = document.getElementById('quantity');
 
-        // JavaScript Enhancements
+            variationSelect.addEventListener('change', () => {
+                const selectedOption = variationSelect.options[variationSelect.selectedIndex];
+                const maxStock = selectedOption.getAttribute('data-stock');
 
-        document.addEventListener("DOMContentLoaded", function () {
-        // Highlight selected variant
-        const optionButtons = document.querySelectorAll(".option-btn");
-        optionButtons.forEach((btn) => {
-            btn.addEventListener("click", function () {
-                optionButtons.forEach((b) => b.classList.remove("selected"));
-                btn.classList.add("selected");
-            });
-        });
-
-        // Quantity controls
-        const quantityInput = document.querySelector(".quantity-controls input");
-        const qtyBtns = document.querySelectorAll(".qty-btn");
-        qtyBtns.forEach((btn) => {
-            btn.addEventListener("click", function () {
-                const currentQty = parseInt(quantityInput.value);
-                if (btn.textContent === "-" && currentQty > 1) {
-                    quantityInput.value = currentQty - 1;
-                } else if (btn.textContent === "+") {
-                    const maxStock = parseInt(quantityInput.getAttribute("max"));
-                    if (currentQty < maxStock) {
-                        quantityInput.value = currentQty + 1;
+                // Set the max attribute of the quantity input
+                if (maxStock) {
+                    quantityInput.setAttribute('max', maxStock);
+                    if (parseInt(quantityInput.value) > parseInt(maxStock)) {
+                        quantityInput.value = maxStock; // Adjust value if it exceeds max
                     }
                 }
             });
         });
-
-        // Thumbnail image slider
-        const thumbnails = document.querySelectorAll(".thumbnail-images img");
-        const mainImage = document.querySelector(".main-image img");
-        thumbnails.forEach((thumb) => {
-            thumb.addEventListener("click", function () {
-                mainImage.src = thumb.src;
-            });
-        });
-
-        // Button animations
-        const buttons = document.querySelectorAll("button");
-        buttons.forEach((button) => {
-            button.addEventListener("mouseover", () => {
-                button.style.transform = "scale(1.05)";
-                button.style.transition = "transform 0.3s";
-            });
-
-            button.addEventListener("mouseout", () => {
-                button.style.transform = "scale(1)";
-            });
-
-            button.addEventListener("mousedown", () => {
-                button.style.transform = "scale(0.95)";
-            });
-
-            button.addEventListener("mouseup", () => {
-                button.style.transform = "scale(1)";
-            });
-        });
-
-        // Sticky navbar on scroll
-        const navbar = document.querySelector(".navbar");
-        window.addEventListener("scroll", () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add("sticky");
-            } else {
-                navbar.classList.remove("sticky");
-            }
-        });
-
-        // Discount badge animation
-        const discountBadge = document.querySelector(".discount-badge");
-        if (discountBadge) {
-            setInterval(() => {
-                discountBadge.style.transform = "scale(1.2)";
-                discountBadge.style.transition = "transform 0.3s";
-                setTimeout(() => {
-                    discountBadge.style.transform = "scale(1)";
-                }, 300);
-            }, 1000);
-        }
-
-        // Lazy loading reviews
-        const reviews = [
-            // Additional reviews as in the original script
-        ];
-
-        const reviewContainer = document.querySelector(".user-reviews");
-        const loadMoreBtn = reviewContainer.querySelector(".load-more button");
-
-        let displayedReviews = 3;
-
-        function renderReviews() {
-            const reviewsHtml = reviews
-                .slice(0, displayedReviews)
-                .map(
-                    (review) => `
-                    <div class="review">
-                        <div class="review-header">
-                            <span class="user-name">${review.name}</span>
-                            <div class="user-rating">
-                                ${Array(Math.floor(review.rating))
-                                    .fill("<i class='fas fa-star'></i>")
-                                    .join("")}
-                                ${review.rating % 1 > 0 ? "<i class='fas fa-star-half-alt'></i>" : ""}
-                            </div>
-                        </div>
-                        <div class="review-body">
-                            <img src="${review.image}" alt="Reviewed Product" class="review-image">
-                            <p class="review-comment">"${review.comment}"</p>
-                        </div>
-                    </div>`
-                )
-                .join("");
-
-            reviewContainer.insertAdjacentHTML("beforeend", reviewsHtml);
-        }
-
-        function loadMoreReviews() {
-            displayedReviews += 3;
-            if (displayedReviews >= reviews.length) {
-                loadMoreBtn.style.display = "none";
-            }
-            renderReviews();
-        }
-
-        loadMoreBtn.addEventListener("click", loadMoreReviews);
-
-        renderReviews();
-        });
-
-        document.addEventListener("DOMContentLoaded", function () {
-        const reviews = [
-            {
-                name: "Eka",
-                rating: 4.5,
-                comment: "Produk bagus, pengiriman cepat, dan kualitas memuaskan!",
-                image: "image/pd3.png",
-            },
-            {
-                name: "Baoy",
-                rating: 5,
-                comment: "Saya suka aroma parfumnya. Sangat menyegarkan.",
-                image: "image/pd3.png",
-            },
-            {
-                name: "Hendra",
-                rating: 4,
-                comment: "Harganya terjangkau dengan kualitas yang sangat baik!",
-                image: "image/pd3.png",
-            },
-            {
-                name: "Rina",
-                rating: 5,
-                comment: "Parfum ini luar biasa. Saya pasti akan membeli lagi!",
-                image: "image/pd3.png",
-            },
-            {
-                name: "Tommy",
-                rating: 4,
-                comment: "Baunya enak, tapi pengemasan kurang aman.",
-                image: "image/pd3.png",
-            },
-        ];
-
-        const reviewContainer = document.querySelector(".user-reviews");
-        const loadMoreBtn = reviewContainer.querySelector(".load-more button");
-
-        let displayedReviews = 3; // Awal jumlah ulasan yang ditampilkan
-
-        // Fungsi untuk merender ulasan
-        function renderReviews() {
-            const reviewsHtml = reviews
-                .slice(0, displayedReviews)
-                .map(
-                    (review) => `
-                        <div class="review">
-                            <div class="review-header">
-                                <span class="user-name">${review.name}</span>
-                                <div class="user-rating">
-                                    ${Array(Math.floor(review.rating))
-                                        .fill('<i class="fas fa-star"></i>')
-                                        .join("")}
-                                    ${review.rating % 1 > 0 ? '<i class="fas fa-star-half-alt"></i>' : ""}
-                                </div>
-                            </div>
-                            <div class="review-body">
-                                <img src="${review.image}" alt="Reviewed Product" class="review-image">
-                                <p class="review-comment">"${review.comment}"</p>
-                            </div>
-                        </div>`
-                )
-                .join("");
-
-            reviewContainer.querySelectorAll(".review").forEach((r) => r.remove()); // Bersihkan ulasan lama
-            reviewContainer.insertAdjacentHTML("afterbegin", reviewsHtml);
-        }
-
-        // Fungsi untuk memuat lebih banyak ulasan
-        function loadMoreReviews() {
-            displayedReviews += 3; // Tambahkan jumlah ulasan yang ditampilkan
-            if (displayedReviews >= reviews.length) {
-                displayedReviews = reviews.length; // Maksimal jumlah ulasan
-                loadMoreBtn.style.display = "none"; // Sembunyikan tombol jika semua ulasan dimuat
-            }
-            renderReviews();
-        }
-
-        loadMoreBtn.addEventListener("click", loadMoreReviews);
-
-        renderReviews(); // Render ulasan awal
-        });
-
-    </script> -->
+</script>
 </body>
 </html>

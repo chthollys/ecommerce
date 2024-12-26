@@ -27,6 +27,7 @@
         <div class="nav-links">
             <a class="nav-link" href="#featured-products">Products</a>
             <a class="nav-link" href="../views/cart.php"><i class="fas fa-shopping-cart"></i> Cart</a>
+            <a class="nav-link" href="../views/orderstatus-page.php">Order Status</a>
             <a class="nav-link" href="../private/logoutProcess.php">Log Out</a>
             <a href="../views/profile-dashboard.php"><img src="<?php echo $user['profile_img'] ?>" width="50px" height="50px" style="border-radius: 50% ; object-fit: cover"></a>
         </div>

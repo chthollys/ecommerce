@@ -7,6 +7,7 @@ include '../config/openConn.php';
 // Get user inputs
 $product_id = isset($_POST['product_id']) ? (int)$_POST['product_id'] : 0;
 $quantity = isset($_POST['quantity']) ? (int)$_POST['quantity'] : 1;
+$variation_id = isset($_POST['variation_id']) ? (int)$_POST['variation_id'] : 0;
 
 // Fetch product details
 $stmt = mysqli_prepare($conn, "SELECT * FROM products_registry WHERE id = ?");
@@ -23,8 +24,8 @@ if ($product) {
     $total_price = $product_price * $quantity;
 
     // Check if product already exists in the cart
-    $stmt_check = mysqli_prepare($conn, "SELECT quantity FROM cart WHERE user_id = ? AND product_id = ?");
-    mysqli_stmt_bind_param($stmt_check, 'ii', $user_id, $product_id);
+    $stmt_check = mysqli_prepare($conn, "SELECT quantity FROM cart WHERE user_id = ? AND product_id = ? AND variation_id = ?");
+    mysqli_stmt_bind_param($stmt_check, 'iii', $user_id, $product_id, $variation_id);
     mysqli_stmt_execute($stmt_check);
     $check_result = mysqli_stmt_get_result($stmt_check);
 
@@ -32,14 +33,16 @@ if ($product) {
         // Product exists, update quantity
         $new_quantity = $row['quantity'] + $quantity;
         $new_total_price = $new_quantity * $product_price; // Pre-compute the total price
-        $stmt_update = mysqli_prepare($conn, "UPDATE cart SET quantity = ?, total_price = ? WHERE user_id = ? AND product_id = ?");
-        mysqli_stmt_bind_param($stmt_update, 'diii', $new_quantity, $new_total_price, $user_id, $product_id);
+        $stmt_update = mysqli_prepare($conn, "UPDATE cart SET quantity = ?, total_price = ? WHERE user_id = ? AND product_id = ? AND variation_id = ?");
+        mysqli_stmt_bind_param($stmt_update, 'diiii', $new_quantity, $new_total_price, $user_id, $product_id, $variation_id);
         mysqli_stmt_execute($stmt_update);
+        mysqli_stmt_close($stmt_update);
     } else {
         // Product does not exist, insert new row
-        $stmt_insert = mysqli_prepare($conn, "INSERT INTO cart (user_id, seller_id, product_id, product_name, quantity, price, total_price, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-        mysqli_stmt_bind_param($stmt_insert, 'iiisdids', $user_id, $seller_id, $product_id, $product_name, $quantity, $product_price, $total_price, $product_image);
+        $stmt_insert = mysqli_prepare($conn, "INSERT INTO cart (user_id, seller_id, product_id, product_name, quantity, price, total_price, image, variation_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        mysqli_stmt_bind_param($stmt_insert, 'iiisdidsi', $user_id, $seller_id, $product_id, $product_name, $quantity, $product_price, $total_price, $product_image, $variation_id);
         mysqli_stmt_execute($stmt_insert);
+        mysqli_stmt_close($stmt_insert);
     }
 
     // Redirect to the product details page with a success message

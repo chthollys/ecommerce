@@ -19,7 +19,8 @@ $query2 ="SELECT a.*, b.profile_img AS profile_img ,
           FROM reviews AS a 
           JOIN user AS b 
           ON a.reviewer_id = b.id
-          WHERE a.product_id = ?";
+          WHERE a.product_id = ?
+          ORDER BY a.review_date DESC";
 $stmt2 = mysqli_prepare($conn, $query2);
 mysqli_stmt_bind_param($stmt2, 'i', $product_id);
 mysqli_stmt_execute($stmt2);
@@ -35,7 +36,8 @@ if($review_list) {
 $query3 ="SELECT COUNT(*) AS review_count, 
           AVG(rating) AS average_rating,
           b.sold_qty AS sold_count
-          from reviews AS a JOIN products_registry AS b
+          from reviews AS a 
+          JOIN products_registry AS b
           ON a.product_id = b.id
           WHERE product_id = ?";
 $stmt3 = mysqli_prepare($conn, $query3);
@@ -48,7 +50,7 @@ if($review_stat['average_rating'] == NULL) {
     $review_stat['average_rating'] = 0;
 }
 
-$query4 ="SELECT variation_name, stocks AS variation_stock
+$query4 ="SELECT variation_id, variation_name, stocks AS variation_stock
           from product_variations
           WHERE product_id = ?";
 $stmt4 = mysqli_prepare($conn, $query4);
