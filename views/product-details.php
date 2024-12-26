@@ -116,6 +116,14 @@ include '../private/product-detailsProcess.php';
                 </div>
             </div>
         </div>
+        <!-- Seller Bio -->
+        <div class="product-description">
+            <h3>Seller:</h3>
+            <div class="seller-bio">
+                <img src="<?php echo htmlspecialchars($product['seller_img'] ?? 0) ?>" width="50px" height="50px" style="border-radius: 50% ; object-fit: cover">
+                <p><?php echo $product['seller_name']; ?></p>
+            </div>
+        </div>
 
         <!-- Product Description -->
         <div class="product-description">
