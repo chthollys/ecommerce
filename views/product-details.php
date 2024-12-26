@@ -138,8 +138,14 @@ include '../private/product-detailsProcess.php';
             <h3>Ulasan Pengguna</h3>
             <?php foreach($reviews as $review) :?>
             <div class="review">
-                <div class="review-header">
-                    <span class="user-name"><?php echo $review['reviewer_name']?></span>
+                <div class="review-body">
+                    <div class="flex-row">
+                        <div class="flex-column">
+                            <span class="user-name"><?php echo $review['reviewer_name']?></span>
+                            <img src="<?php echo $review['profile_img']?>" alt="Reviewer Profile Pict" class="review-image">
+                        </div>
+                        <p class="review-comment">"<?php echo $review['text']?>"</p>
+                    </div>
                     <div class="user-rating">
                         <?php
                             $rating_count = 0;
@@ -153,12 +159,10 @@ include '../private/product-detailsProcess.php';
                             }
                         ?>
                         <p class="review-comment"><?php echo $review['review_date']?></p>
+                        <p class="review-comment">Varian: <?php echo $review['variation_name']?></p>                        
                     </div>
                 </div>
-                <div class="review-body">
-                    <img src="<?php echo $review['profile_img']?>" alt="Reviewer Profile Pict" class="review-image">
-                    <p class="review-comment">"<?php echo $review['text']?>"</p>                </div>
-                </div>
+            </div>
             <?php endforeach;?>
             
             <div class="load-more">

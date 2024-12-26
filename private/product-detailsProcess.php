@@ -19,10 +19,12 @@ if (!$product) {
 }
 
 $query2 ="SELECT a.*, b.profile_img AS profile_img ,
-          b.name AS reviewer_name
+          b.name AS reviewer_name, c.variation_name AS variation_name
           FROM reviews AS a 
           JOIN user AS b 
           ON a.reviewer_id = b.id
+          JOIN product_variations AS c
+          ON a.variation_id = c.variation_id
           WHERE a.product_id = ?
           ORDER BY a.review_date DESC";
 $stmt2 = mysqli_prepare($conn, $query2);
