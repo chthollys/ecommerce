@@ -73,8 +73,5 @@ This project is a full-featured e-commerce platform named **Lokalaku**. It inclu
 2. **Configure Database Connection:** Update `openConn.php` with your database credentials.
 3. **Run the Application:** Access the application through your local server (e.g., `http://localhost/project/ecommerce/views/home-page.php`).
 
-## License
-This project is licensed under the MIT License.
-
 ## Contact
 For any inquiries or issues, please contact the project maintainer.
